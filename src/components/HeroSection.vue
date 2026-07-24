@@ -47,7 +47,7 @@ const next = nextEvent(events)
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: url('/images/header.jpg') center 30% / cover no-repeat;
+  background: url('../assets/img/header.jpg') center 30% / cover no-repeat;
 }
 
 .hero-overlay {

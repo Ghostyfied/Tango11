@@ -1,5 +1,6 @@
 <script setup>
 import site from '../data/site.json'
+import kompaszaalPhoto from '../assets/img/kompaszaal-marijke.jpg'
 </script>
 
 <template>
@@ -44,7 +45,7 @@ import site from '../data/site.json'
         </div>
 
         <figure class="info-photo" data-reveal>
-          <img src="/images/kompaszaal-marijke.jpg" alt="Marijke de Vries at a Tango 11 salon" loading="lazy" />
+          <img :src="kompaszaalPhoto" alt="Marijke de Vries at a Tango 11 salon" loading="lazy" />
         </figure>
       </div>
     </div>

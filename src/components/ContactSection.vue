@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from 'vue'
 import site from '../data/site.json'
+import portrait from '../assets/img/marijke.png'
 
 // Assembled at runtime to keep the address out of the static HTML for scrapers
 const email = computed(() => `${site.contact.emailUser}@${site.contact.emailDomain}`)
@@ -11,7 +12,7 @@ const email = computed(() => `${site.contact.emailUser}@${site.contact.emailDoma
     <div class="container">
       <div class="contact-grid">
         <figure class="portrait" data-reveal>
-          <img src="/images/marijke.png" :alt="`Portrait of ${site.contact.name}`" loading="lazy" />
+          <img :src="portrait" :alt="`Portrait of ${site.contact.name}`" loading="lazy" />
         </figure>
 
         <div data-reveal>

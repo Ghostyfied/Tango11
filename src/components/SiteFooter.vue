@@ -1,5 +1,6 @@
 <script setup>
 import site from '../data/site.json'
+import sponsorLogo from '../assets/img/logo-amsterdam.png'
 
 const year = new Date().getFullYear()
 </script>
@@ -18,7 +19,7 @@ const year = new Date().getFullYear()
       <div class="footer-sponsor">
         <p class="footer-muted">Project Alma del Sur is sponsored by</p>
         <a :href="site.links.sponsor" target="_blank" rel="noopener">
-          <img src="/images/logo-amsterdam.png" alt="Gemeente Amsterdam" loading="lazy" />
+          <img :src="sponsorLogo" alt="Gemeente Amsterdam" loading="lazy" />
         </a>
       </div>
     </div>

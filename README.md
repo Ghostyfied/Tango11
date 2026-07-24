@@ -47,12 +47,26 @@ npm run build    # production build into dist/
 npm run preview  # preview the production build
 ```
 
-## Deployment (Netlify)
+## Deployment
+
+### GitHub Pages (current)
+
+Every push to the default branch runs
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which builds
+the site and deploys it to GitHub Pages at
+**https://ghostyfied.github.io/Tango11/**. No configuration needed — edit,
+commit, push.
+
+The build uses a relative base path (`base: './'` in `vite.config.js`), so
+the same build works under the Pages subpath and at a domain root.
+
+### Netlify (optional, for the custom domain later)
 
 Connect this repository to Netlify — `netlify.toml` already configures the
-build (`npm run build`, publish `dist/`). When the site gets its final domain,
-update the `og:url` / `og:image` URLs in `index.html` if the domain differs
-from `tango11.nl`.
+build (`npm run build`, publish `dist/`). Alternatively, a custom domain can
+be attached directly to GitHub Pages in the repository settings. Either way,
+when the final domain is live, update the `og:url` / `og:image` URLs in
+`index.html` to match it.
 
 ## Credits
 
