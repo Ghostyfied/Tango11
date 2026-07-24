@@ -1,0 +1,39 @@
+[
+  {
+    "date": "2026-07-19",
+    "title": "Official Opening Night",
+    "subtitle": "The opening of Project Alma del Sur",
+    "programme": [
+      { "time": "17:00", "item": "Lecture by Tijmen Wehlburg: Tango beyond the Cliché" },
+      { "time": "18:00", "item": "The Joy of Tango — introductory class by Juan Martín Carrera & Stefania Collina (Montevideo)" },
+      { "time": "19:00", "item": "Tango 11 Milonga" },
+      { "time": "20:00", "item": "Official opening of Project Alma del Sur" },
+      { "time": "24:00", "item": "La Cumparsita — closing of the night" }
+    ]
+  },
+  {
+    "date": "2026-08-16",
+    "title": "Alma del Sur · Night II",
+    "programme": []
+  },
+  {
+    "date": "2026-09-20",
+    "title": "Alma del Sur · Night III",
+    "programme": []
+  },
+  {
+    "date": "2026-10-18",
+    "title": "Alma del Sur · Night IV",
+    "programme": []
+  },
+  {
+    "date": "2026-11-15",
+    "title": "Alma del Sur · Night V",
+    "programme": []
+  },
+  {
+    "date": "2026-12-20",
+    "title": "Alma del Sur · Night VI",
+    "programme": []
+  }
+]

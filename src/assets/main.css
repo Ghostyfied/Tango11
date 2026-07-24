@@ -1,0 +1,193 @@
+/* ---------- Design tokens ---------- */
+:root {
+  --bg: #0e0b09;
+  --bg-raised: #16110d;
+  --surface: #1d1712;
+  --surface-hover: #241c15;
+  --line: rgba(201, 164, 92, 0.16);
+  --line-strong: rgba(201, 164, 92, 0.35);
+
+  --gold: #c9a45c;
+  --gold-bright: #e6c988;
+  --red: #8e2434;
+  --red-bright: #b93a4e;
+
+  --text: #ece4d8;
+  --text-muted: #a99e8f;
+  --text-faint: #746a5d;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --nav-height: 4.25rem;
+  --container: 68rem;
+  --radius: 10px;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--gold-bright);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--red);
+  color: var(--text);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0;
+  color: var(--text);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+/* ---------- Shared layout helpers ---------- */
+.container {
+  width: min(var(--container), 100% - 3rem);
+  margin-inline: auto;
+}
+
+.section {
+  padding: clamp(4.5rem, 10vw, 7.5rem) 0;
+}
+
+.section--raised {
+  background: var(--bg-raised);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.1rem;
+}
+
+.section-eyebrow::before {
+  content: '';
+  width: 2.25rem;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.6;
+}
+
+.section-title {
+  font-size: clamp(2.1rem, 4.5vw, 3.1rem);
+  margin-bottom: 1.25rem;
+}
+
+.section-lead {
+  max-width: 44rem;
+  color: var(--text-muted);
+  font-size: 1.08rem;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.85rem 1.9rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+}
+
+.btn--gold {
+  background: var(--gold);
+  color: #1a1408;
+}
+
+.btn--gold:hover {
+  background: var(--gold-bright);
+  color: #1a1408;
+  transform: translateY(-2px);
+}
+
+.btn--ghost {
+  border-color: var(--line-strong);
+  color: var(--text);
+}
+
+.btn--ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold-bright);
+}
+
+/* ---------- Scroll reveal ---------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

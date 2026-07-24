@@ -1,0 +1,28 @@
+{
+  "name": "Tango 11",
+  "project": "Alma del Sur",
+  "tagline": "Six Sunday nights of tango in Amsterdam",
+  "venue": {
+    "name": "Willem de Zwijgerkerk",
+    "street": "Olympiaweg 14",
+    "zipCity": "1076 VX Amsterdam",
+    "country": "Netherlands",
+    "mapsUrl": "https://maps.google.com/?q=Willem+de+Zwijgerkerk,+Olympiaweg+14,+1076+VX+Amsterdam",
+    "infoUrl": "https://willemdezwijgerkerk.nl/wat-is-de-willem/"
+  },
+  "contact": {
+    "name": "Marijke de Vries",
+    "role": "Organiser",
+    "phone": "+31621263373",
+    "phoneDisplay": "+31 6 2126 3373",
+    "emailUser": "info",
+    "emailDomain": "marijkedevries.nl"
+  },
+  "links": {
+    "facebookPage": "https://www.facebook.com/tango11amsterdam",
+    "facebookGroup": "https://www.facebook.com/groups/302228544629759",
+    "tangokalender": "https://www.tangokalender.nl",
+    "sonando": "https://www.sonandomarathon.com",
+    "sponsor": "https://amsterdamsfondsvoordekunst.nl/"
+  }
+}
