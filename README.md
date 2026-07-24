@@ -53,9 +53,10 @@ npm run preview  # preview the production build
 
 Every push to the default branch runs
 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which builds
-the site and deploys it to GitHub Pages at
-**https://ghostyfied.github.io/Tango11/**. No configuration needed — edit,
-commit, push.
+the site and force-pushes `dist/` to the `gh-pages` branch, which GitHub
+Pages serves at **https://ghostyfied.github.io/Tango11/**. No configuration
+needed — edit, commit, push. (The `gh-pages` branch is a build artifact;
+never edit it by hand.)
 
 The build uses a relative base path (`base: './'` in `vite.config.js`), so
 the same build works under the Pages subpath and at a domain root.
