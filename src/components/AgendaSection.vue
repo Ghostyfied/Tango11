@@ -36,6 +36,18 @@ const others = events.filter((e) => e !== next)
           </li>
         </ol>
         <p v-else class="programme-tba">Full programme to be announced.</p>
+
+        <ul v-if="next.notes?.length" class="notes">
+          <li v-for="note in next.notes" :key="note">{{ note }}</li>
+        </ul>
+
+        <p v-if="next.reservation" class="reservation">
+          {{ next.reservation.text }}
+          <a v-if="next.reservation.url" :href="next.reservation.url" target="_blank" rel="noopener">
+            Reserve here ↗
+          </a>
+          <em v-else>Reservation link follows soon.</em>
+        </p>
       </article>
 
       <div class="grid">
@@ -135,6 +147,61 @@ const others = events.filter((e) => e !== next)
   margin: 0;
 }
 
+/* Extras below the timetable, spanning the full card */
+.notes {
+  grid-column: 1 / -1;
+  list-style: none;
+  margin: 0;
+  padding: 1.25rem 0 0;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0.6rem;
+}
+
+.notes li {
+  position: relative;
+  padding-left: 1.4rem;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.notes li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+}
+
+.notes li:nth-child(3n + 1)::before {
+  background: var(--c-magenta);
+}
+
+.notes li:nth-child(3n + 2)::before {
+  background: var(--c-orange);
+}
+
+.notes li:nth-child(3n + 3)::before {
+  background: var(--c-blue);
+}
+
+.reservation {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 0.9rem 1.2rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: rgba(201, 164, 92, 0.08);
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.reservation em {
+  color: var(--text-muted);
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
@@ -168,11 +235,28 @@ const others = events.filter((e) => e !== next)
   padding-right: 1.1rem;
 }
 
+/* "Save the date" numbers cycle through the poster palette */
 .card-day {
   display: block;
   font-family: var(--font-display);
   font-size: 1.9rem;
   line-height: 1;
+  color: var(--gold-bright);
+}
+
+.card:nth-child(4n + 1) .card-day {
+  color: var(--c-magenta);
+}
+
+.card:nth-child(4n + 2) .card-day {
+  color: var(--c-orange);
+}
+
+.card:nth-child(4n + 3) .card-day {
+  color: var(--c-blue);
+}
+
+.card:nth-child(4n + 4) .card-day {
   color: var(--gold-bright);
 }
 

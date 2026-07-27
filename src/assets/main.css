@@ -12,6 +12,12 @@
   --red: #8e2434;
   --red-bright: #b93a4e;
 
+  /* Poster palette (designer's "bolletjes") */
+  --c-magenta: #e0157f;
+  --c-purple: #8f3f97;
+  --c-blue: #1e8fd5;
+  --c-orange: #f7941d;
+
   --text: #ece4d8;
   --text-muted: #a99e8f;
   --text-faint: #746a5d;
@@ -115,12 +121,18 @@ p {
   margin-bottom: 1.1rem;
 }
 
+/* Three poster-colored dots in front of every section label */
 .section-eyebrow::before {
   content: '';
   width: 2.25rem;
-  height: 1px;
-  background: var(--gold);
-  opacity: 0.6;
+  height: 0.55rem;
+  background-image:
+    radial-gradient(circle, var(--c-magenta) 45%, transparent 52%),
+    radial-gradient(circle, var(--c-orange) 45%, transparent 52%),
+    radial-gradient(circle, var(--c-blue) 45%, transparent 52%);
+  background-size: 0.55rem 0.55rem;
+  background-position: 0 50%, 0.85rem 50%, 1.7rem 50%;
+  background-repeat: no-repeat;
 }
 
 .section-title {

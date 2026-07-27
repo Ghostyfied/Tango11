@@ -1,6 +1,7 @@
 <script setup>
 import site from '../data/site.json'
 import sponsorLogo from '../assets/img/logo-amsterdam.png'
+import venueLogo from '../assets/img/logo-willem.png'
 
 const year = new Date().getFullYear()
 </script>
@@ -17,10 +18,15 @@ const year = new Date().getFullYear()
       </div>
 
       <div class="footer-sponsor">
-        <p class="footer-muted">Project Alma del Sur is sponsored by</p>
-        <a :href="site.links.sponsor" target="_blank" rel="noopener">
-          <img :src="sponsorLogo" alt="Gemeente Amsterdam" loading="lazy" />
-        </a>
+        <p class="footer-muted">Project Alma del Sur is supported by</p>
+        <div class="footer-logos">
+          <a :href="site.links.sponsor" target="_blank" rel="noopener" class="logo-chip">
+            <img :src="sponsorLogo" alt="Gemeente Amsterdam" loading="lazy" />
+          </a>
+          <a :href="site.venue.infoUrl" target="_blank" rel="noopener" class="logo-chip">
+            <img :src="venueLogo" alt="Willem de Zwijgerkerk" loading="lazy" />
+          </a>
+        </div>
       </div>
     </div>
 
@@ -69,16 +75,32 @@ const year = new Date().getFullYear()
   text-align: right;
 }
 
-.footer-sponsor img {
-  width: 11rem;
-  margin-top: 0.6rem;
-  margin-left: auto;
-  opacity: 0.75;
-  transition: opacity 0.25s ease;
+.footer-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.7rem;
 }
 
-.footer-sponsor a:hover img {
+.logo-chip {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.55rem 0.9rem;
+  opacity: 0.9;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.logo-chip:hover {
   opacity: 1;
+  transform: translateY(-2px);
+}
+
+.logo-chip img {
+  height: 2.1rem;
+  width: auto;
 }
 
 .footer-bottom {
@@ -100,8 +122,8 @@ const year = new Date().getFullYear()
     text-align: left;
   }
 
-  .footer-sponsor img {
-    margin-left: 0;
+  .footer-logos {
+    justify-content: flex-start;
   }
 }
 </style>

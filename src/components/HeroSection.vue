@@ -10,6 +10,9 @@ const next = nextEvent(events)
   <section id="top" class="hero">
     <div class="hero-bg" role="img" aria-label="Couples dancing tango at a milonga at night"></div>
     <div class="hero-overlay"></div>
+    <div class="bokeh" aria-hidden="true">
+      <span v-for="n in 8" :key="n"></span>
+    </div>
 
     <div class="container hero-content">
       <p class="hero-eyebrow">{{ site.name }} presents</p>
@@ -56,6 +59,40 @@ const next = nextEvent(events)
   background:
     linear-gradient(180deg, rgba(14, 11, 9, 0.55) 0%, rgba(14, 11, 9, 0.35) 45%, var(--bg) 100%),
     radial-gradient(ellipse at 30% 60%, rgba(142, 36, 52, 0.28), transparent 65%);
+}
+
+/* Festive light spots in the night, in the poster palette */
+.bokeh {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bokeh span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(14px);
+  animation: bokeh-drift 11s ease-in-out infinite alternate;
+}
+
+.bokeh span:nth-child(1) { width: 130px; height: 130px; top: 12%; left: 68%; background: var(--gold); opacity: 0.32; animation-duration: 13s; }
+.bokeh span:nth-child(2) { width: 70px; height: 70px; top: 24%; left: 84%; background: var(--c-magenta); opacity: 0.3; animation-delay: -3s; }
+.bokeh span:nth-child(3) { width: 95px; height: 95px; top: 58%; left: 76%; background: var(--c-orange); opacity: 0.26; animation-duration: 15s; animation-delay: -6s; }
+.bokeh span:nth-child(4) { width: 55px; height: 55px; top: 8%; left: 38%; background: var(--c-blue); opacity: 0.22; animation-duration: 12s; animation-delay: -2s; }
+.bokeh span:nth-child(5) { width: 42px; height: 42px; top: 40%; left: 92%; background: var(--gold-bright); opacity: 0.35; animation-duration: 10s; animation-delay: -8s; }
+.bokeh span:nth-child(6) { width: 85px; height: 85px; top: 74%; left: 12%; background: var(--c-magenta); opacity: 0.18; animation-duration: 16s; animation-delay: -5s; }
+.bokeh span:nth-child(7) { width: 48px; height: 48px; top: 16%; left: 12%; background: var(--c-orange); opacity: 0.22; animation-duration: 14s; animation-delay: -9s; }
+.bokeh span:nth-child(8) { width: 60px; height: 60px; top: 66%; left: 56%; background: var(--c-blue); opacity: 0.16; animation-duration: 12s; animation-delay: -4s; }
+
+@keyframes bokeh-drift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+
+  to {
+    transform: translate(-22px, 26px) scale(1.15);
+  }
 }
 
 .hero-content {
@@ -176,7 +213,8 @@ const next = nextEvent(events)
     animation: none;
   }
 
-  .hero-scroll span {
+  .hero-scroll span,
+  .bokeh span {
     animation: none;
   }
 }

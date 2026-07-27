@@ -3,16 +3,19 @@ import site from '../data/site.json'
 
 const pillars = [
   {
+    color: 'magenta',
+    title: 'Milongas & special events',
+    text: 'Long milongas, mini marathons and festive special editions — every third Sunday of the month.',
+  },
+  {
+    color: 'blue',
     title: 'Live music & performances',
-    text: 'Every night is more than a milonga — orchestras, singers and dancers bring the salon to life under the vaults of the church.',
+    text: 'Orchestras, singers and dancers bring the salon to life under the vaults of the church.',
   },
   {
-    title: 'Art & lectures',
-    text: 'Visual art and talks that look beyond the cliché, exploring the culture and history behind the tango.',
-  },
-  {
-    title: 'Classes for every level',
-    text: 'From a first introduction to special classes with international teachers — everyone is welcome on the floor.',
+    color: 'purple',
+    title: 'Workshops, lectures & art expo',
+    text: 'Classes for different levels, tango lectures, and an art expo on the theme of the embrace — by artists who dance.',
   },
 ]
 </script>
@@ -26,13 +29,18 @@ const pillars = [
         <p class="section-lead">
           Six Sunday nights in 2026, every third Sunday of the month, the
           {{ site.venue.name }} in Amsterdam turns into a tango salon. Milongas
-          and special events — live music, performances and much more, sponsored
-          by Gemeente Amsterdam.
+          and special events — live music, performances, art and much more.
         </p>
       </div>
 
       <div class="pillars">
-        <article v-for="pillar in pillars" :key="pillar.title" class="pillar" data-reveal>
+        <article
+          v-for="pillar in pillars"
+          :key="pillar.title"
+          class="pillar"
+          :class="`pillar--${pillar.color}`"
+          data-reveal
+        >
           <h3>{{ pillar.title }}</h3>
           <p>{{ pillar.text }}</p>
         </article>
@@ -42,35 +50,58 @@ const pillars = [
 </template>
 
 <style scoped>
+/* The designer's "bolletjes": bold colored circles, as on the posters */
 .pillars {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  gap: 1.25rem;
-  margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3.5rem;
 }
 
 .pillar {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 1.9rem 1.7rem;
-  transition: border-color 0.25s ease, background 0.25s ease;
+  width: min(100%, 19rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2.8rem;
+  box-shadow: inset 0 -18px 40px rgba(0, 0, 0, 0.18), 0 12px 40px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s ease;
 }
 
 .pillar:hover {
-  background: var(--surface-hover);
-  border-color: var(--line-strong);
+  transform: scale(1.04);
+}
+
+.pillar--magenta {
+  background: var(--c-magenta);
+}
+
+.pillar--blue {
+  background: var(--c-blue);
+}
+
+.pillar--purple {
+  background: var(--c-purple);
 }
 
 .pillar h3 {
-  font-size: 1.45rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: #fff;
   margin-bottom: 0.7rem;
-  color: var(--gold-bright);
 }
 
 .pillar p {
   margin: 0;
-  color: var(--text-muted);
-  font-size: 0.96rem;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.92rem;
+  line-height: 1.5;
 }
 </style>

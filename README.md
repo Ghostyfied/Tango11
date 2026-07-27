@@ -29,6 +29,11 @@ Edit [`src/data/events.json`](src/data/events.json). Each event looks like:
   upcoming event** (with its full programme) and dims events that have passed.
 - Leave `programme` as `[]` to show "Full programme to be announced."
 - `subtitle` is optional.
+- Optional `"notes": ["..."]` — extra lines shown under the timetable
+  (performances, classes, expo details).
+- Optional `"reservation": { "text": "...", "url": "https://..." }` — a
+  highlighted reservation call-out; leave `url` empty (`""`) to show
+  "Reservation link follows soon."
 
 Commit and push — Netlify redeploys automatically.
 
