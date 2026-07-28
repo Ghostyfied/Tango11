@@ -1,10 +1,12 @@
 <script setup>
 import site from '../data/site.json'
 import banner from '../assets/img/alma-banner.jpeg'
+import BokehLights from './BokehLights.vue'
 </script>
 
 <template>
   <section id="alma-del-sur" class="section">
+    <BokehLights :seed="2" :count="6" />
     <div class="container">
       <div data-reveal>
         <p class="section-eyebrow">The project</p>

@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import site from '../data/site.json'
 import portrait from '../assets/img/marijke.png'
+import BokehLights from './BokehLights.vue'
 
 // Assembled at runtime to keep the address out of the static HTML for scrapers
 const email = computed(() => `${site.contact.emailUser}@${site.contact.emailDomain}`)
@@ -9,6 +10,7 @@ const email = computed(() => `${site.contact.emailUser}@${site.contact.emailDoma
 
 <template>
   <section id="contact" class="section section--raised">
+    <BokehLights :seed="5" :count="6" />
     <div class="container">
       <div class="contact-grid">
         <figure class="portrait" data-reveal>

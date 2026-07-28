@@ -2,12 +2,14 @@
 import site from '../data/site.json'
 import sponsorLogo from '../assets/img/logo-amsterdam.png'
 import venueLogo from '../assets/img/logo-willem.png'
+import BokehLights from './BokehLights.vue'
 
 const year = new Date().getFullYear()
 </script>
 
 <template>
   <footer class="footer">
+    <BokehLights :seed="6" :count="3" />
     <div class="container footer-grid">
       <div>
         <p class="footer-brand">Tango <span>11</span></p>
@@ -41,9 +43,14 @@ const year = new Date().getFullYear()
 
 <style scoped>
 .footer {
+  position: relative;
   border-top: 1px solid var(--line);
   padding: 3.5rem 0 2rem;
   background: var(--bg);
+}
+
+.footer .container {
+  position: relative;
 }
 
 .footer-grid {

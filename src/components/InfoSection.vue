@@ -1,10 +1,12 @@
 <script setup>
 import site from '../data/site.json'
 import kompaszaalPhoto from '../assets/img/kompaszaal-marijke.jpg'
+import BokehLights from './BokehLights.vue'
 </script>
 
 <template>
   <section id="info" class="section">
+    <BokehLights :seed="4" :count="6" />
     <div class="container">
       <div data-reveal>
         <p class="section-eyebrow">Practical</p>

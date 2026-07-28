@@ -2,6 +2,7 @@
 import site from '../data/site.json'
 import eventsData from '../data/events.json'
 import { dayNumber, formatDate, isPast, monthLabel, nextEvent, sortByDate } from '../utils/events.js'
+import BokehLights from './BokehLights.vue'
 
 const events = sortByDate(eventsData)
 const next = nextEvent(events)
@@ -10,6 +11,7 @@ const others = events.filter((e) => e !== next)
 
 <template>
   <section id="agenda" class="section section--raised">
+    <BokehLights :seed="3" :count="7" />
     <div class="container">
       <div data-reveal>
         <p class="section-eyebrow">Agenda</p>
