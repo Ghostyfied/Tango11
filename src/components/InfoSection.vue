@@ -22,6 +22,7 @@ import BokehLights from './BokehLights.vue'
               {{ site.venue.street }}<br />
               {{ site.venue.zipCity }}, {{ site.venue.country }}
             </p>
+            <p class="info-parking">Parking on Sundays is free around the venue!</p>
             <p class="info-links">
               <a :href="site.venue.mapsUrl" target="_blank" rel="noopener">Open in Maps ↗</a>
               <a :href="site.venue.infoUrl" target="_blank" rel="noopener">About the church ↗</a>
@@ -92,6 +93,11 @@ import BokehLights from './BokehLights.vue'
 .info-card strong {
   color: var(--text);
   font-weight: 500;
+}
+
+.info-parking {
+  color: var(--gold-bright) !important;
+  font-size: 0.95rem;
 }
 
 .info-links {
