@@ -22,7 +22,7 @@ const email = computed(() => `${site.contact.emailUser}@${site.contact.emailDoma
           <h2 class="section-title">{{ site.contact.name }}</h2>
           <p class="section-lead">
             {{ site.contact.role }} of {{ site.name }} and Project
-            {{ site.project }}. Questions about the nights, the programme or the
+            {{ site.project }}. Questions about the events, the programme or the
             venue? Get in touch.
           </p>
 
