@@ -33,7 +33,7 @@ import BokehLights from './BokehLights.vue'
 <style scoped>
 .banner {
   margin: 3rem auto 0;
-  max-width: 40rem;
+  max-width: 56rem;
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: 0 16px 50px rgba(0, 0, 0, 0.45);
