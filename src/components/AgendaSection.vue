@@ -11,7 +11,7 @@ const others = events.filter((e) => e !== next)
 
 <template>
   <section id="agenda" class="section section--raised">
-    <BokehLights :seed="3" :count="7" />
+    <BokehLights :seed="3" :count="12" />
     <div class="container">
       <div data-reveal>
         <p class="section-eyebrow">Agenda</p>

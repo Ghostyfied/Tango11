@@ -9,7 +9,7 @@ const year = new Date().getFullYear()
 
 <template>
   <footer class="footer">
-    <BokehLights :seed="6" :count="3" />
+    <BokehLights :seed="6" :count="5" />
     <div class="container footer-grid">
       <div>
         <p class="footer-brand">Tango <span>11</span></p>

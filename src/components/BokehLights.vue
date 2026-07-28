@@ -21,7 +21,7 @@ const lights = Array.from({ length: props.count }, (_, i) => ({
   top: `${Math.round(rand(i, 2) * 88)}%`,
   size: `${Math.round(36 + rand(i, 3) * 88)}px`,
   background: colors[(props.seed + i) % colors.length],
-  opacity: (0.1 + rand(i, 4) * 0.16).toFixed(2),
+  opacity: (0.1 + rand(i, 4) * 0.3).toFixed(2),
   animationDuration: `${10 + Math.round(rand(i, 5) * 8)}s`,
   animationDelay: `-${Math.round(rand(i, 6) * 9)}s`,
 }))
