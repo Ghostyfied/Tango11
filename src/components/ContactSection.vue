@@ -10,7 +10,7 @@ const email = computed(() => `${site.contact.emailUser}@${site.contact.emailDoma
 
 <template>
   <section id="contact" class="section section--raised">
-    <BokehLights :seed="5" :count="10" />
+    <BokehLights :seed="5" :count="10" pattern="arc" />
     <div class="container">
       <div class="contact-grid">
         <figure class="portrait" data-reveal>

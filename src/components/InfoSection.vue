@@ -6,7 +6,7 @@ import BokehLights from './BokehLights.vue'
 
 <template>
   <section id="info" class="section">
-    <BokehLights :seed="4" :count="10" />
+    <BokehLights :seed="4" :count="10" pattern="corners" />
     <div class="container">
       <div data-reveal>
         <p class="section-eyebrow">Practical</p>
