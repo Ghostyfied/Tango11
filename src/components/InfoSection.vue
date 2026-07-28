@@ -32,7 +32,7 @@ import BokehLights from './BokehLights.vue'
           <article class="info-card" data-reveal>
             <h3>Entrance &amp; payment</h3>
             <p>
-              Pay at the door — by card or in cash. No reservation needed.
+              Pay at the door — by QR-code or cash. No reservation needed.
             </p>
           </article>
 
