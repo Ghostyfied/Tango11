@@ -13,7 +13,7 @@ const others = events.filter((e) => e !== next)
     <div class="container">
       <div data-reveal>
         <p class="section-eyebrow">Agenda</p>
-        <h2 class="section-title">Six Sunday nights</h2>
+        <h2 class="section-title">Six Sundays</h2>
         <p class="section-lead">
           Every third Sunday of the month. Please check
           <a :href="site.links.tangokalender" target="_blank" rel="noopener">Tangokalender</a>
@@ -23,7 +23,7 @@ const others = events.filter((e) => e !== next)
 
       <article v-if="next" class="featured" data-reveal>
         <div class="featured-head">
-          <p class="featured-label">Next night</p>
+          <p class="featured-label">Next event</p>
           <h3 class="featured-date">{{ formatDate(next.date) }}</h3>
           <p class="featured-title">{{ next.title }}</p>
           <p v-if="next.subtitle" class="featured-sub">{{ next.subtitle }}</p>
@@ -65,7 +65,7 @@ const others = events.filter((e) => e !== next)
           <div>
             <h4>{{ event.title }}</h4>
             <p>
-              {{ isPast(event.date) ? 'This night has passed' : formatDate(event.date) }}
+              {{ isPast(event.date) ? 'This event has passed' : formatDate(event.date) }}
             </p>
           </div>
         </article>

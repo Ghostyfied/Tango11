@@ -10,7 +10,7 @@ import banner from '../assets/img/alma-banner.jpeg'
         <p class="section-eyebrow">The project</p>
         <h2 class="section-title">Alma del Sur</h2>
         <p class="section-lead">
-          Six Sunday nights in 2026, every third Sunday of the month, the
+          Six Sundays in 2026, every third Sunday of the month, the
           {{ site.venue.name }} in Amsterdam turns into a tango salon. Milongas
           and special events — live music and performances, workshops for
           different levels, tango lectures, and an art expo on the theme of

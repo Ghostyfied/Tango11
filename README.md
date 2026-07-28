@@ -1,7 +1,7 @@
 # Tango 11 · Alma del Sur
 
 Website for [Tango 11](https://tango11.nl), the Amsterdam tango salon by
-Marijke de Vries, and its 2026 project **Alma del Sur** — six Sunday nights of
+Marijke de Vries, and its 2026 project **Alma del Sur** — six Sundays of
 tango at the Willem de Zwijgerkerk.
 
 Built with [Vue 3](https://vuejs.org) and [Vite](https://vite.dev) as a fast,
