@@ -19,7 +19,7 @@ const next = nextEvent(events)
       <h1 class="hero-title">Alma <em>del</em> Sur</h1>
       <p class="hero-sub">
         Six Sundays of tango — milongas with live music, performances,
-        art and classes at the {{ site.venue.name }}, Amsterdam.
+        visual art and classes at the {{ site.venue.name }}, Amsterdam.
       </p>
 
       <div class="hero-actions">
