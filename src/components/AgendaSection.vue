@@ -7,6 +7,15 @@ import BokehLights from './BokehLights.vue'
 const events = sortByDate(eventsData)
 const next = nextEvent(events)
 const others = events.filter((e) => e !== next)
+
+// Escape HTML, then turn **text** into <strong> so data entries can bold names
+function fmt(text) {
+  const escaped = text
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+  return escaped.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+}
 </script>
 
 <template>
@@ -34,13 +43,13 @@ const others = events.filter((e) => e !== next)
         <ol v-if="next.programme.length" class="programme">
           <li v-for="entry in next.programme" :key="entry.time + entry.item">
             <span class="programme-time">{{ entry.time }}</span>
-            <span>{{ entry.item }}</span>
+            <span v-html="fmt(entry.item)"></span>
           </li>
         </ol>
         <p v-else class="programme-tba">Full programme to be announced.</p>
 
         <ul v-if="next.notes?.length" class="notes">
-          <li v-for="note in next.notes" :key="note">{{ note }}</li>
+          <li v-for="note in next.notes" :key="note" v-html="fmt(note)"></li>
         </ul>
 
         <p v-if="next.reservation" class="reservation">
@@ -133,6 +142,13 @@ const others = events.filter((e) => e !== next)
 
 .programme li:last-child {
   border-bottom: 0;
+}
+
+/* Inter is loaded up to weight 600 — avoid faux-bold synthesis */
+.programme :deep(strong),
+.notes :deep(strong) {
+  font-weight: 600;
+  color: var(--gold-bright);
 }
 
 .programme-time {

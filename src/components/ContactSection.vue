@@ -38,7 +38,7 @@ const email = computed(() => `${site.contact.emailUser}@${site.contact.emailDoma
             <li>
               <span>Also by Marijke</span>
               <a :href="site.links.sonando" target="_blank" rel="noopener">
-                Soñando Tango Marathon — spring &amp; fall ↗
+                Soñando Tango Marathon ↗
               </a>
             </li>
           </ul>

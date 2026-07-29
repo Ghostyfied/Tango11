@@ -31,6 +31,8 @@ Edit [`src/data/events.json`](src/data/events.json). Each event looks like:
 - `subtitle` is optional.
 - Optional `"notes": ["..."]` — extra lines shown under the timetable
   (performances, classes, expo details).
+- In `programme` items and `notes`, wrap text in `**double asterisks**`
+  to highlight it in bold (e.g. DJ names).
 - Optional `"reservation": { "text": "...", "url": "https://..." }` — a
   highlighted reservation call-out; leave `url` empty (`""`) to show
   "Reservation link follows soon."
