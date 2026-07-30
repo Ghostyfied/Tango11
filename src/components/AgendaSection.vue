@@ -9,6 +9,10 @@ const events = sortByDate(eventsData)
 const next = nextEvent(events)
 const others = events.filter((e) => e !== next)
 
+// Resolve optional programme photos (filenames in src/assets/img) to built URLs
+const images = import.meta.glob('../assets/img/*', { eager: true, import: 'default' })
+const photoSrc = (name) => images[`../assets/img/${name}`]
+
 // Escape HTML, then turn **text** into <strong> so data entries can bold names
 function fmt(text) {
   const escaped = text
@@ -45,6 +49,14 @@ function fmt(text) {
           <li v-for="entry in next.programme" :key="entry.time + entry.item">
             <span class="programme-time">{{ entry.time }}</span>
             <span v-html="fmt(entry.item)"></span>
+            <img
+              v-if="entry.photo && photoSrc(entry.photo)"
+              class="programme-photo"
+              :src="photoSrc(entry.photo)"
+              :alt="entry.photoAlt || ''"
+              :style="entry.photoPos ? { objectPosition: entry.photoPos } : null"
+              loading="lazy"
+            />
           </li>
         </ol>
         <p v-else class="programme-tba">Full programme to be announced.</p>
@@ -136,11 +148,29 @@ function fmt(text) {
 
 .programme li {
   display: flex;
+  align-items: center;
   gap: 1.25rem;
   padding: 0.7rem 0;
   border-bottom: 1px solid var(--line);
   font-size: 0.95rem;
   color: var(--text);
+}
+
+/* DJ portraits echo the circular "bolletjes" motif */
+.programme-photo {
+  flex: 0 0 auto;
+  width: 3.75rem;
+  height: 3.75rem;
+  margin-left: auto;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--line-strong);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.programme li:hover .programme-photo {
+  transform: scale(1.6);
+  border-color: var(--gold);
 }
 
 .programme li:last-child {

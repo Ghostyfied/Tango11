@@ -33,6 +33,9 @@ Edit [`src/data/events.json`](src/data/events.json). Each event looks like:
   (performances, classes, expo details).
 - In `programme` items and `notes`, wrap text in `**double asterisks**`
   to highlight it in bold (e.g. DJ names).
+- A programme entry can carry a round portrait: add `"photo"` (filename of
+  an image in `src/assets/img/`), `"photoAlt"`, and optionally
+  `"photoPos"` (CSS object-position, to aim the crop at the face).
 - Optional `"reservation": { "text": "...", "url": "https://..." }` — a
   highlighted reservation call-out; leave `url` empty (`""`) to show
   "Reservation link follows soon."

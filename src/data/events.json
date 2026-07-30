@@ -16,8 +16,20 @@
     "title": "Mini Marathon!",
     "subtitle": "A long milonga — mini marathon — in two parts, with two international DJs and the possibility to join for dinner. Preliminary programme:",
     "programme": [
-      { "time": "15:00", "item": "Mini marathon, part one — DJ **Alex Hawat** (Lebanon)" },
-      { "time": "19:30", "item": "Mini marathon, part two — DJ **Jens-Ingo Brodesser** (Belgium), until 00:30" }
+      {
+        "time": "15:00",
+        "item": "Mini marathon, part one — DJ **Alex Hawat** (Lebanon)",
+        "photo": "DJ_alex.jpg",
+        "photoAlt": "DJ Alex Hawat",
+        "photoPos": "58% 30%"
+      },
+      {
+        "time": "19:30",
+        "item": "Mini marathon, part two — DJ **Jens-Ingo Brodesser** (Belgium), until 00:30",
+        "photo": "DJ_jens.jpg",
+        "photoAlt": "DJ Jens-Ingo Brodesser",
+        "photoPos": "72% 40%"
+      }
     ],
     "notes": [
       "Prior to the milonga: beginners class by Julia Ozols (Ukraine) and Sebastian Coli Bazzini (Netherlands/Argentina).",
