@@ -13,6 +13,9 @@ defineProps({
       between {{ food.servedWindow }}. Pre-order and pre-pay only (Tikkie) —
       ordering is a <strong>two-step</strong> process.
     </p>
+    <p class="food-disclaimer">
+      For each order of three empanadas you have to complete the process again.
+    </p>
 
     <div class="food-steps">
       <article class="food-step">
@@ -67,6 +70,13 @@ defineProps({
 .food-intro strong {
   color: var(--text);
   font-weight: 600;
+}
+
+.food-disclaimer {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 0.9rem;
+  margin: -0.75rem 0 1.5rem;
 }
 
 .food-steps {

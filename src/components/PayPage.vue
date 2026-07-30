@@ -1,9 +1,6 @@
 <script setup>
 import BokehLights from './BokehLights.vue'
-
-// Once the Tikkie QR image is added to src/assets/img/tikkie-qr.png,
-// import it here and set qr to the imported image.
-const qr = null
+import qr from '../assets/img/tikkie-qr.png'
 </script>
 
 <template>
@@ -107,6 +104,8 @@ const qr = null
   border-radius: var(--radius);
   background: #fff;
   padding: 1rem;
+  /* Keep the QR modules sharp-edged when upscaled */
+  image-rendering: pixelated;
 }
 
 .pay-qr figcaption {
