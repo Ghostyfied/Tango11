@@ -1,4 +1,5 @@
 <script setup>
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import site from '../data/site.json'
 import eventsData from '../data/events.json'
 import { dayNumber, formatDate, isPast, monthLabel, nextEvent, sortByDate } from '../utils/events.js'
@@ -12,6 +13,23 @@ const others = events.filter((e) => e !== next)
 // Resolve optional programme photos (filenames in src/assets/img) to built URLs
 const images = import.meta.glob('../assets/img/*', { eager: true, import: 'default' })
 const photoSrc = (name) => images[`../assets/img/${name}`]
+
+// Clicking a portrait opens the full photo in a lightbox
+const lightbox = ref(null)
+
+watch(lightbox, (open) => {
+  document.body.style.overflow = open ? 'hidden' : ''
+})
+
+function onKeydown(e) {
+  if (e.key === 'Escape') lightbox.value = null
+}
+
+onMounted(() => window.addEventListener('keydown', onKeydown))
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', onKeydown)
+  document.body.style.overflow = ''
+})
 
 // Escape HTML, then turn **text** into <strong> so data entries can bold names
 function fmt(text) {
@@ -49,14 +67,21 @@ function fmt(text) {
           <li v-for="entry in next.programme" :key="entry.time + entry.item">
             <span class="programme-time">{{ entry.time }}</span>
             <span v-html="fmt(entry.item)"></span>
-            <img
+            <button
               v-if="entry.photo && photoSrc(entry.photo)"
-              class="programme-photo"
-              :src="photoSrc(entry.photo)"
-              :alt="entry.photoAlt || ''"
-              :style="entry.photoPos ? { objectPosition: entry.photoPos } : null"
-              loading="lazy"
-            />
+              type="button"
+              class="programme-photo-btn"
+              :aria-label="`Show full photo of ${entry.photoAlt || 'this artist'}`"
+              @click="lightbox = { src: photoSrc(entry.photo), alt: entry.photoAlt || '' }"
+            >
+              <img
+                class="programme-photo"
+                :src="photoSrc(entry.photo)"
+                :alt="entry.photoAlt || ''"
+                :style="entry.photoPos ? { objectPosition: entry.photoPos } : null"
+                loading="lazy"
+              />
+            </button>
           </li>
         </ol>
         <p v-else class="programme-tba">Full programme to be announced.</p>
@@ -97,6 +122,18 @@ function fmt(text) {
         </article>
       </div>
     </div>
+
+    <Teleport to="body">
+      <Transition name="lightbox">
+        <div v-if="lightbox" class="lightbox" @click="lightbox = null">
+          <figure>
+            <img :src="lightbox.src" :alt="lightbox.alt" />
+            <figcaption v-if="lightbox.alt">{{ lightbox.alt }}</figcaption>
+          </figure>
+          <button type="button" class="lightbox-close" aria-label="Close photo">×</button>
+        </div>
+      </Transition>
+    </Teleport>
   </section>
 </template>
 
@@ -157,11 +194,20 @@ function fmt(text) {
 }
 
 /* DJ portraits echo the circular "bolletjes" motif */
-.programme-photo {
+.programme-photo-btn {
   flex: 0 0 auto;
+  margin-left: auto;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.programme-photo {
   width: 3.75rem;
   height: 3.75rem;
-  margin-left: auto;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--line-strong);
@@ -171,6 +217,65 @@ function fmt(text) {
 .programme li:hover .programme-photo {
   transform: scale(1.6);
   border-color: var(--gold);
+}
+
+/* Full-photo lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(14, 11, 9, 0.88);
+  backdrop-filter: blur(8px);
+  cursor: zoom-out;
+  padding: 2rem;
+}
+
+.lightbox figure {
+  margin: 0;
+  text-align: center;
+}
+
+.lightbox img {
+  max-width: min(58rem, 92vw);
+  max-height: 82vh;
+  border-radius: var(--radius);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+}
+
+.lightbox figcaption {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--gold-bright);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  background: none;
+  border: 0;
+  color: var(--text-muted);
+  font-size: 2.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lightbox-close:hover {
+  color: var(--text);
+}
+
+.lightbox-enter-active,
+.lightbox-leave-active {
+  transition: opacity 0.25s ease;
+}
+
+.lightbox-enter-from,
+.lightbox-leave-to {
+  opacity: 0;
 }
 
 .programme li:last-child {
