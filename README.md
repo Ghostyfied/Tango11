@@ -36,6 +36,11 @@ Edit [`src/data/events.json`](src/data/events.json). Each event looks like:
 - Optional `"reservation": { "text": "...", "url": "https://..." }` — a
   highlighted reservation call-out; leave `url` empty (`""`) to show
   "Reservation link follows soon."
+- Optional `"foodOrdering": { "partner", "formUrl", "price",
+  "servedWindow", "deadline" }` — renders the two-step food ordering block
+  (order form + Tikkie payment page at `/pay/`). The block has anchor
+  `#food`, so `https://tango11.nl/#food` links straight to it. The Tikkie
+  QR image lives in `src/components/PayPage.vue` (see the comment there).
 
 Commit and push — Netlify redeploys automatically.
 

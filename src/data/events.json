@@ -24,9 +24,12 @@
       "During the event: performance by Roxy Lucaciu and Nikita Di.",
       "Art expo on the theme of the embrace — four dancing artists on the embrace as gesture, as posture, as form: Julia Crucero, Rose Heuff, Carla Rump and Marijke de Vries."
     ],
-    "reservation": {
-      "text": "Want to join for dinner? Please make a reservation before August 10.",
-      "url": ""
+    "foodOrdering": {
+      "partner": "La Reinita",
+      "formUrl": "https://forms.gle/ZjPWXvzpdnFhSUut7",
+      "price": "€15",
+      "servedWindow": "18:00 and 19:30",
+      "deadline": "23:59 on Wednesday 12 August"
     }
   },
   {

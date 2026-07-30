@@ -3,6 +3,7 @@ import site from '../data/site.json'
 import eventsData from '../data/events.json'
 import { dayNumber, formatDate, isPast, monthLabel, nextEvent, sortByDate } from '../utils/events.js'
 import BokehLights from './BokehLights.vue'
+import FoodOrdering from './FoodOrdering.vue'
 
 const events = sortByDate(eventsData)
 const next = nextEvent(events)
@@ -59,6 +60,8 @@ function fmt(text) {
           </a>
           <em v-else>Reservation link follows soon.</em>
         </p>
+
+        <FoodOrdering v-if="next.foodOrdering" :food="next.foodOrdering" />
       </article>
 
       <div class="grid">
