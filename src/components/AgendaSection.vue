@@ -2,18 +2,30 @@
 import site from '../data/site.json'
 import eventsData from '../data/events.json'
 import { dayNumber, formatDate, isPast, monthLabel, nextEvent, sortByDate } from '../utils/events.js'
+import BokehLights from './BokehLights.vue'
+import FoodOrdering from './FoodOrdering.vue'
 
 const events = sortByDate(eventsData)
 const next = nextEvent(events)
 const others = events.filter((e) => e !== next)
+
+// Escape HTML, then turn **text** into <strong> so data entries can bold names
+function fmt(text) {
+  const escaped = text
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+  return escaped.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+}
 </script>
 
 <template>
   <section id="agenda" class="section section--raised">
+    <BokehLights :seed="3" :count="12" pattern="edges" />
     <div class="container">
       <div data-reveal>
         <p class="section-eyebrow">Agenda</p>
-        <h2 class="section-title">Six Sunday nights</h2>
+        <h2 class="section-title">Six Sundays</h2>
         <p class="section-lead">
           Every third Sunday of the month. Please check
           <a :href="site.links.tangokalender" target="_blank" rel="noopener">Tangokalender</a>
@@ -23,7 +35,7 @@ const others = events.filter((e) => e !== next)
 
       <article v-if="next" class="featured" data-reveal>
         <div class="featured-head">
-          <p class="featured-label">Next night</p>
+          <p class="featured-label">Next event</p>
           <h3 class="featured-date">{{ formatDate(next.date) }}</h3>
           <p class="featured-title">{{ next.title }}</p>
           <p v-if="next.subtitle" class="featured-sub">{{ next.subtitle }}</p>
@@ -32,13 +44,13 @@ const others = events.filter((e) => e !== next)
         <ol v-if="next.programme.length" class="programme">
           <li v-for="entry in next.programme" :key="entry.time + entry.item">
             <span class="programme-time">{{ entry.time }}</span>
-            <span>{{ entry.item }}</span>
+            <span v-html="fmt(entry.item)"></span>
           </li>
         </ol>
         <p v-else class="programme-tba">Full programme to be announced.</p>
 
         <ul v-if="next.notes?.length" class="notes">
-          <li v-for="note in next.notes" :key="note">{{ note }}</li>
+          <li v-for="note in next.notes" :key="note" v-html="fmt(note)"></li>
         </ul>
 
         <p v-if="next.reservation" class="reservation">
@@ -48,6 +60,8 @@ const others = events.filter((e) => e !== next)
           </a>
           <em v-else>Reservation link follows soon.</em>
         </p>
+
+        <FoodOrdering v-if="next.foodOrdering" :food="next.foodOrdering" />
       </article>
 
       <div class="grid">
@@ -65,7 +79,7 @@ const others = events.filter((e) => e !== next)
           <div>
             <h4>{{ event.title }}</h4>
             <p>
-              {{ isPast(event.date) ? 'This night has passed' : formatDate(event.date) }}
+              {{ isPast(event.date) ? 'This event has passed' : formatDate(event.date) }}
             </p>
           </div>
         </article>
@@ -131,6 +145,13 @@ const others = events.filter((e) => e !== next)
 
 .programme li:last-child {
   border-bottom: 0;
+}
+
+/* Inter is loaded up to weight 600 — avoid faux-bold synthesis */
+.programme :deep(strong),
+.notes :deep(strong) {
+  font-weight: 600;
+  color: var(--gold-bright);
 }
 
 .programme-time {

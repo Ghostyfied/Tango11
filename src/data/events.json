@@ -13,40 +13,43 @@
   },
   {
     "date": "2026-08-16",
-    "title": "Long Milonga!",
+    "title": "Mini Marathon!",
     "subtitle": "A long milonga — mini marathon — in two parts, with two international DJs and the possibility to join for dinner. Preliminary programme:",
     "programme": [
-      { "time": "15:00", "item": "Long milonga, part one — DJ Alex Hawatt (Belgium)" },
-      { "time": "19:30", "item": "Long milonga, part two — DJ Jens-Ingo Brodesser (Belgium), until 00:30" }
+      { "time": "15:00", "item": "Mini marathon, part one — DJ **Alex Hawatt** (Belgium)" },
+      { "time": "19:30", "item": "Mini marathon, part two — DJ **Jens-Ingo Brodesser** (Belgium), until 00:30" }
     ],
     "notes": [
-      "Prior to the milonga: a class for beginners by Julia Ozols (Ukraine) and Sebastian Coli Bazzini (Netherlands/Argentina).",
-      "During the event: a performance by Roxy Lucaciu and Nikita Di.",
+      "Prior to the milonga: beginners class by Julia Ozols (Ukraine) and Sebastian Coli Bazzini (Netherlands/Argentina).",
+      "During the event: performance by Roxy Lucaciu and Nikita Di.",
       "Art expo on the theme of the embrace — four dancing artists on the embrace as gesture, as posture, as form: Julia Crucero, Rose Heuff, Carla Rump and Marijke de Vries."
     ],
-    "reservation": {
-      "text": "Want to join for dinner? Please make a reservation before August 10.",
-      "url": ""
+    "foodOrdering": {
+      "partner": "La Reinita",
+      "formUrl": "https://forms.gle/ZjPWXvzpdnFhSUut7",
+      "price": "€15",
+      "servedWindow": "18:00 and 19:30",
+      "deadline": "23:59 on Wednesday 12 August"
     }
   },
   {
     "date": "2026-09-20",
-    "title": "Alma del Sur · Night III",
+    "title": "Alma del Sur · III",
     "programme": []
   },
   {
     "date": "2026-10-18",
-    "title": "Alma del Sur · Night IV",
+    "title": "Alma del Sur · IV",
     "programme": []
   },
   {
     "date": "2026-11-15",
-    "title": "Alma del Sur · Night V",
+    "title": "Alma del Sur · V",
     "programme": []
   },
   {
     "date": "2026-12-20",
-    "title": "Alma del Sur · Night VI",
+    "title": "Alma del Sur · VI",
     "programme": []
   }
 ]

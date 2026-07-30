@@ -1,10 +1,12 @@
 <script setup>
 import site from '../data/site.json'
 import kompaszaalPhoto from '../assets/img/kompaszaal-marijke.jpg'
+import BokehLights from './BokehLights.vue'
 </script>
 
 <template>
   <section id="info" class="section">
+    <BokehLights :seed="4" :count="10" pattern="corners" />
     <div class="container">
       <div data-reveal>
         <p class="section-eyebrow">Practical</p>
@@ -20,6 +22,7 @@ import kompaszaalPhoto from '../assets/img/kompaszaal-marijke.jpg'
               {{ site.venue.street }}<br />
               {{ site.venue.zipCity }}, {{ site.venue.country }}
             </p>
+            <p class="info-parking">Parking on Sundays is free around the venue!</p>
             <p class="info-links">
               <a :href="site.venue.mapsUrl" target="_blank" rel="noopener">Open in Maps ↗</a>
               <a :href="site.venue.infoUrl" target="_blank" rel="noopener">About the church ↗</a>
@@ -29,8 +32,7 @@ import kompaszaalPhoto from '../assets/img/kompaszaal-marijke.jpg'
           <article class="info-card" data-reveal>
             <h3>Entrance &amp; payment</h3>
             <p>
-              Pay at the door — by card (PIN, SumUp terminal) or in cash.
-              No reservation needed.
+              Pay at the door — by QR-code or cash. No reservation needed.
             </p>
           </article>
 
@@ -91,6 +93,11 @@ import kompaszaalPhoto from '../assets/img/kompaszaal-marijke.jpg'
 .info-card strong {
   color: var(--text);
   font-weight: 500;
+}
+
+.info-parking {
+  color: var(--gold-bright) !important;
+  font-size: 0.95rem;
 }
 
 .info-links {

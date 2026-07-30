@@ -1,7 +1,7 @@
 # Tango 11 · Alma del Sur
 
 Website for [Tango 11](https://tango11.nl), the Amsterdam tango salon by
-Marijke de Vries, and its 2026 project **Alma del Sur** — six Sunday nights of
+Marijke de Vries, and its 2026 project **Alma del Sur** — six Sundays of
 tango at the Willem de Zwijgerkerk.
 
 Built with [Vue 3](https://vuejs.org) and [Vite](https://vite.dev) as a fast,
@@ -31,9 +31,16 @@ Edit [`src/data/events.json`](src/data/events.json). Each event looks like:
 - `subtitle` is optional.
 - Optional `"notes": ["..."]` — extra lines shown under the timetable
   (performances, classes, expo details).
+- In `programme` items and `notes`, wrap text in `**double asterisks**`
+  to highlight it in bold (e.g. DJ names).
 - Optional `"reservation": { "text": "...", "url": "https://..." }` — a
   highlighted reservation call-out; leave `url` empty (`""`) to show
   "Reservation link follows soon."
+- Optional `"foodOrdering": { "partner", "formUrl", "price",
+  "servedWindow", "deadline" }` — renders the two-step food ordering block
+  (order form + Tikkie payment page at `/pay/`). The block has anchor
+  `#food`, so `https://tango11.nl/#food` links straight to it. The Tikkie
+  QR image lives in `src/components/PayPage.vue` (see the comment there).
 
 Commit and push — Netlify redeploys automatically.
 

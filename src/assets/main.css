@@ -100,7 +100,13 @@ p {
 }
 
 .section {
+  position: relative;
   padding: clamp(4.5rem, 10vw, 7.5rem) 0;
+}
+
+/* Keep section content above the decorative bokeh layer */
+.section > .container {
+  position: relative;
 }
 
 .section--raised {

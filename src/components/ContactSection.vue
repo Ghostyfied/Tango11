@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import site from '../data/site.json'
 import portrait from '../assets/img/marijke.png'
+import BokehLights from './BokehLights.vue'
 
 // Assembled at runtime to keep the address out of the static HTML for scrapers
 const email = computed(() => `${site.contact.emailUser}@${site.contact.emailDomain}`)
@@ -9,6 +10,7 @@ const email = computed(() => `${site.contact.emailUser}@${site.contact.emailDoma
 
 <template>
   <section id="contact" class="section section--raised">
+    <BokehLights :seed="5" :count="10" pattern="arc" />
     <div class="container">
       <div class="contact-grid">
         <figure class="portrait" data-reveal>
@@ -20,8 +22,8 @@ const email = computed(() => `${site.contact.emailUser}@${site.contact.emailDoma
           <h2 class="section-title">{{ site.contact.name }}</h2>
           <p class="section-lead">
             {{ site.contact.role }} of {{ site.name }} and Project
-            {{ site.project }}. Questions about the nights, the programme or the
-            venue? Get in touch.
+            {{ site.project }}. Questions about the project, the programme or
+            the venue? Get in touch.
           </p>
 
           <ul class="contact-list">
@@ -36,7 +38,7 @@ const email = computed(() => `${site.contact.emailUser}@${site.contact.emailDoma
             <li>
               <span>Also by Marijke</span>
               <a :href="site.links.sonando" target="_blank" rel="noopener">
-                Soñando Tango Marathon — spring &amp; fall ↗
+                Soñando Tango Marathon ↗
               </a>
             </li>
           </ul>
