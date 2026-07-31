@@ -118,6 +118,15 @@ function fmt(text) {
             <p>
               {{ isPast(event.date) ? 'This event has passed' : formatDate(event.date) }}
             </p>
+            <a
+              v-if="event.photosUrl"
+              :href="event.photosUrl"
+              target="_blank"
+              rel="noopener"
+              class="card-photos"
+            >
+              Event photos ↗
+            </a>
           </div>
         </article>
       </div>
@@ -381,7 +390,24 @@ function fmt(text) {
 }
 
 .card--past {
-  opacity: 0.45;
+  opacity: 0.55;
+  transition: opacity 0.25s ease;
+}
+
+.card--past:hover {
+  opacity: 1;
+}
+
+.card-photos {
+  display: inline-block;
+  margin-top: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--gold-bright);
+}
+
+.card-photos:hover {
+  color: var(--text);
 }
 
 .card-date {

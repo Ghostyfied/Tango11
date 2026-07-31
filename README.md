@@ -36,6 +36,9 @@ Edit [`src/data/events.json`](src/data/events.json). Each event looks like:
 - A programme entry can carry a round portrait: add `"photo"` (filename of
   an image in `src/assets/img/`), `"photoAlt"`, and optionally
   `"photoPos"` (CSS object-position, to aim the crop at the face).
+- Optional `"photosUrl": "https://..."` on an event — shows an
+  "Event photos ↗" link on its agenda card (e.g. a OneDrive album of a
+  past event).
 - Optional `"reservation": { "text": "...", "url": "https://..." }` — a
   highlighted reservation call-out; leave `url` empty (`""`) to show
   "Reservation link follows soon."
