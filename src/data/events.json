@@ -34,7 +34,7 @@
     ],
     "notes": [
       {
-        "text": "Prior to the milonga: [beginners class](beginners/) by Julia Ozols (Ukraine) and Sebastian Coli Bazzini (Netherlands/Argentina).",
+        "text": "Prior to the milonga: [beginners class](beginners/) at 14:00 by Julia Ozols (Ukraine) and Sebastian Coli Bazzini (Netherlands/Argentina).",
         "photos": [
           {
             "file": "JuliaSebastian_1.jpeg",
@@ -71,7 +71,20 @@
   {
     "date": "2026-09-20",
     "title": "Alma del Sur · III",
-    "programme": []
+    "programme": [],
+    "notes": [
+      {
+        "text": "[Beginners class](beginners/) at 14:00 by Julia Ozols (Ukraine) and Sebastian Coli Bazzini (Netherlands/Argentina).",
+        "photos": [
+          {
+            "file": "JuliaSebastian_1.jpeg",
+            "alt": "Julia Ozols & Sebastian Coli Bazzini",
+            "pos": "50% 62%"
+          }
+        ]
+      }
+    ],
+    "cardLink": { "text": "Beginners class at 14:00", "url": "beginners/" }
   },
   {
     "date": "2026-10-18",

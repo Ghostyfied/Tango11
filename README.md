@@ -44,6 +44,8 @@ Edit [`src/data/events.json`](src/data/events.json). Each event looks like:
 - Optional `"photosUrl": "https://..."` on an event — shows an
   "Event photos ↗" link on its agenda card (e.g. a OneDrive album of a
   past event).
+- Optional `"cardLink": { "text", "url" }` on an event — an extra small
+  link on its compact agenda card (e.g. to the beginners-class page).
 - Optional `"reservation": { "text": "...", "url": "https://..." }` — a
   highlighted reservation call-out; leave `url` empty (`""`) to show
   "Reservation link follows soon."

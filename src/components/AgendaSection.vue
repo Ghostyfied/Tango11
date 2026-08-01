@@ -153,6 +153,9 @@ function fmt(text) {
             >
               Event photos ↗
             </a>
+            <a v-if="event.cardLink" :href="event.cardLink.url" class="card-photos">
+              {{ event.cardLink.text }}
+            </a>
           </div>
         </article>
       </div>
