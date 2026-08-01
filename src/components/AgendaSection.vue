@@ -347,17 +347,28 @@ function fmt(text) {
 }
 
 .notes li {
-  position: relative;
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  padding-left: 1.4rem;
   font-size: 0.92rem;
   color: var(--text-muted);
 }
 
+/* The colored dot anchors to the text's first line, not the row */
 .note-text {
   flex: 1;
+  position: relative;
+  padding-left: 1.4rem;
+}
+
+.note-text::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
 }
 
 /* Small clickable portraits at the end of a note row, like the DJ ones */
@@ -400,25 +411,15 @@ function fmt(text) {
   z-index: 2;
 }
 
-.notes li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.45em;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-}
-
-.notes li:nth-child(3n + 1)::before {
+.notes li:nth-child(3n + 1) .note-text::before {
   background: var(--c-magenta);
 }
 
-.notes li:nth-child(3n + 2)::before {
+.notes li:nth-child(3n + 2) .note-text::before {
   background: var(--c-orange);
 }
 
-.notes li:nth-child(3n + 3)::before {
+.notes li:nth-child(3n + 3) .note-text::before {
   background: var(--c-blue);
 }
 
