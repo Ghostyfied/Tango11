@@ -30,7 +30,10 @@ Edit [`src/data/events.json`](src/data/events.json). Each event looks like:
 - Leave `programme` as `[]` to show "Full programme to be announced."
 - `subtitle` is optional.
 - Optional `"notes": ["..."]` — extra lines shown under the timetable
-  (performances, classes, expo details).
+  (performances, classes, expo details). A note can also be an object
+  `{ "text": "...", "photos": [{ "file", "alt", "pos" }] }` to show small
+  clickable portraits at the end of the line (same lightbox as the
+  programme photos).
 - In `programme` items and `notes`, wrap text in `**double asterisks**`
   to highlight it in bold (e.g. DJ names).
 - A programme entry can carry a round portrait: add `"photo"` (filename of
