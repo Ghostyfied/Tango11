@@ -3,6 +3,7 @@
     "date": "2026-07-19",
     "title": "Official Opening Night",
     "subtitle": "The opening of Project Alma del Sur",
+    "photosUrl": "https://1drv.ms/f/c/6ea97a109ed5560a/IgD75VEv6pUVT4-Y6N8YbryYARuSh0D7Zgjabzf9AFR85TM?e=REEcl0",
     "programme": [
       { "time": "17:00", "item": "Lecture by Tijmen Wehlburg: Tango beyond the Cliché" },
       { "time": "18:00", "item": "The Joy of Tango — introductory class by Juan Martín Carrera & Stefania Collina (Montevideo)" },
@@ -16,8 +17,20 @@
     "title": "Mini Marathon!",
     "subtitle": "A long milonga — mini marathon — in two parts, with two international DJs and the possibility to join for dinner. Preliminary programme:",
     "programme": [
-      { "time": "15:00", "item": "Mini marathon, part one — DJ **Alex Hawat** (Lebanon)" },
-      { "time": "19:30", "item": "Mini marathon, part two — DJ **Jens-Ingo Brodesser** (Belgium), until 00:30" }
+      {
+        "time": "15:00",
+        "item": "Mini marathon, part one — DJ **Alex Hawat** (Lebanon)",
+        "photo": "DJ_alex.jpg",
+        "photoAlt": "DJ Alex Hawat",
+        "photoPos": "58% 30%"
+      },
+      {
+        "time": "19:30",
+        "item": "Mini marathon, part two — DJ **Jens-Ingo Brodesser** (Belgium), until 00:30",
+        "photo": "DJ_jens.jpg",
+        "photoAlt": "DJ Jens-Ingo Brodesser",
+        "photoPos": "72% 40%"
+      }
     ],
     "notes": [
       "Prior to the milonga: beginners class by Julia Ozols (Ukraine) and Sebastian Coli Bazzini (Netherlands/Argentina).",
