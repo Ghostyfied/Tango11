@@ -12,6 +12,7 @@ export default defineConfig({
       input: {
         main: fileURLToPath(new URL('./index.html', import.meta.url)),
         pay: fileURLToPath(new URL('./pay/index.html', import.meta.url)),
+        beginners: fileURLToPath(new URL('./beginners/index.html', import.meta.url)),
       },
     },
   },

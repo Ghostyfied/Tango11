@@ -1,0 +1,12 @@
+import '@fontsource/cormorant-garamond/500.css'
+import '@fontsource/cormorant-garamond/600.css'
+import '@fontsource/cormorant-garamond/500-italic.css'
+import '@fontsource/inter/400.css'
+import '@fontsource/inter/500.css'
+import '@fontsource/inter/600.css'
+import './assets/main.css'
+
+import { createApp } from 'vue'
+import BeginnersPage from './components/BeginnersPage.vue'
+
+createApp(BeginnersPage).mount('#app')

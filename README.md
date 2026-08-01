@@ -35,7 +35,9 @@ Edit [`src/data/events.json`](src/data/events.json). Each event looks like:
   clickable portraits at the end of the line (same lightbox as the
   programme photos).
 - In `programme` items and `notes`, wrap text in `**double asterisks**`
-  to highlight it in bold (e.g. DJ names).
+  to highlight it in bold (e.g. DJ names), and use `[text](url)` to make
+  it a link (e.g. `[beginners class](beginners/)` for the poster page at
+  `/beginners/`).
 - A programme entry can carry a round portrait: add `"photo"` (filename of
   an image in `src/assets/img/`), `"photoAlt"`, and optionally
   `"photoPos"` (CSS object-position, to aim the crop at the face).

@@ -34,13 +34,16 @@ onBeforeUnmount(() => {
 // Notes may be plain strings or { text, photos: [{ file, alt, pos }] }
 const asNote = (note) => (typeof note === 'string' ? { text: note, photos: [] } : { photos: [], ...note })
 
-// Escape HTML, then turn **text** into <strong> so data entries can bold names
+// Escape HTML, then turn **text** into <strong> and [text](url) into links,
+// so data entries can bold names and link to pages
 function fmt(text) {
   const escaped = text
     .replaceAll('&', '&amp;')
     .replaceAll('<', '&lt;')
     .replaceAll('>', '&gt;')
-  return escaped.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+  return escaped
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\[([^\]]+)\]\(([^)\s"]+)\)/g, '<a href="$2">$1</a>')
 }
 </script>
 
