@@ -31,6 +31,9 @@ onBeforeUnmount(() => {
   document.body.style.overflow = ''
 })
 
+// Notes may be plain strings or { text, photos: [{ file, alt, pos }] }
+const asNote = (note) => (typeof note === 'string' ? { text: note, photos: [] } : { photos: [], ...note })
+
 // Escape HTML, then turn **text** into <strong> so data entries can bold names
 function fmt(text) {
   const escaped = text
@@ -87,7 +90,27 @@ function fmt(text) {
         <p v-else class="programme-tba">Full programme to be announced.</p>
 
         <ul v-if="next.notes?.length" class="notes">
-          <li v-for="note in next.notes" :key="note" v-html="fmt(note)"></li>
+          <li v-for="note in next.notes.map(asNote)" :key="note.text">
+            <span class="note-text" v-html="fmt(note.text)"></span>
+            <span v-if="note.photos.length" class="note-photos">
+              <button
+                v-for="photo in note.photos"
+                :key="photo.file"
+                type="button"
+                class="note-photo-btn"
+                :aria-label="`Show full photo of ${photo.alt}`"
+                @click="lightbox = { src: photoSrc(photo.file), alt: photo.alt }"
+              >
+                <img
+                  class="note-photo"
+                  :src="photoSrc(photo.file)"
+                  :alt="photo.alt"
+                  :style="photo.pos ? { objectPosition: photo.pos } : null"
+                  loading="lazy"
+                />
+              </button>
+            </span>
+          </li>
         </ul>
 
         <p v-if="next.reservation" class="reservation">
@@ -325,9 +348,56 @@ function fmt(text) {
 
 .notes li {
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
   padding-left: 1.4rem;
   font-size: 0.92rem;
   color: var(--text-muted);
+}
+
+.note-text {
+  flex: 1;
+}
+
+/* Small clickable portraits at the end of a note row, like the DJ ones */
+.note-photos {
+  flex: 0 0 auto;
+  margin-left: auto;
+  display: flex;
+}
+
+.note-photo-btn {
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.note-photo-btn + .note-photo-btn {
+  margin-left: -0.7rem;
+}
+
+.note-photo {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--line-strong);
+  background: var(--surface);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.note-photo-btn:hover .note-photo {
+  transform: scale(1.6);
+  border-color: var(--gold);
+}
+
+.note-photo-btn:hover {
+  position: relative;
+  z-index: 2;
 }
 
 .notes li::before {

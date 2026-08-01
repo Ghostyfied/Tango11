@@ -33,8 +33,31 @@
       }
     ],
     "notes": [
-      "Prior to the milonga: beginners class by Julia Ozols (Ukraine) and Sebastian Coli Bazzini (Netherlands/Argentina).",
-      "During the event: performance by Roxy Lucaciu and Nikita Di.",
+      {
+        "text": "Prior to the milonga: beginners class by Julia Ozols (Ukraine) and Sebastian Coli Bazzini (Netherlands/Argentina).",
+        "photos": [
+          {
+            "file": "JuliaSebastian_1.jpeg",
+            "alt": "Julia Ozols & Sebastian Coli Bazzini",
+            "pos": "50% 62%"
+          },
+          {
+            "file": "JuliaSebastian_2.jpeg",
+            "alt": "Julia Ozols & Sebastian Coli Bazzini — the embrace",
+            "pos": "36% 16%"
+          }
+        ]
+      },
+      {
+        "text": "During the event: performance by Roxy Lucaciu and Nikita Di.",
+        "photos": [
+          {
+            "file": "niki_roxy.jpeg",
+            "alt": "Roxy Lucaciu & Nikita Di",
+            "pos": "48% 22%"
+          }
+        ]
+      },
       "Art expo on the theme of the embrace — four dancing artists on the embrace as gesture, as posture, as form: Julia Crucero, Rose Heuff, Carla Rump and Marijke de Vries."
     ],
     "foodOrdering": {
