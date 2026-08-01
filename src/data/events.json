@@ -5,11 +5,26 @@
     "subtitle": "The opening of Project Alma del Sur",
     "photosUrl": "https://1drv.ms/f/c/6ea97a109ed5560a/IgD75VEv6pUVT4-Y6N8YbryYARuSh0D7Zgjabzf9AFR85TM?e=REEcl0",
     "programme": [
-      { "time": "17:00", "item": "Lecture by Tijmen Wehlburg: Tango beyond the Cliché" },
-      { "time": "18:00", "item": "The Joy of Tango — introductory class by Juan Martín Carrera & Stefania Collina (Montevideo)" },
-      { "time": "19:00", "item": "Tango 11 Milonga" },
-      { "time": "20:00", "item": "Official opening of Project Alma del Sur" },
-      { "time": "24:00", "item": "La Cumparsita — closing of the night" }
+      {
+        "time": "17:00",
+        "item": "Lecture by Tijmen Wehlburg: Tango beyond the Cliché"
+      },
+      {
+        "time": "18:00",
+        "item": "The Joy of Tango — introductory class by Juan Martín Carrera & Stefania Collina (Montevideo)"
+      },
+      {
+        "time": "19:00",
+        "item": "Tango 11 Milonga"
+      },
+      {
+        "time": "20:00",
+        "item": "Official opening of Project Alma del Sur"
+      },
+      {
+        "time": "24:00",
+        "item": "La Cumparsita — closing of the night"
+      }
     ]
   },
   {
@@ -74,7 +89,7 @@
     "programme": [],
     "notes": [
       {
-        "text": "[Beginners class](beginners/) at 14:00 by Julia Ozols (Ukraine) and Sebastian Coli Bazzini (Netherlands/Argentina).",
+        "text": "[Beginners class](beginners/) at 18:00 by Julia Ozols (Ukraine) and Sebastian Coli Bazzini (Netherlands/Argentina).",
         "photos": [
           {
             "file": "JuliaSebastian_1.jpeg",
@@ -84,7 +99,10 @@
         ]
       }
     ],
-    "cardLink": { "text": "Beginners class at 14:00", "url": "beginners/" }
+    "cardLink": {
+      "text": "Beginners class at 18:00",
+      "url": "beginners/"
+    }
   },
   {
     "date": "2026-10-18",
