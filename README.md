@@ -57,6 +57,25 @@ Edit [`src/data/events.json`](src/data/events.json). Each event looks like:
 
 Commit and push — Netlify redeploys automatically.
 
+### Gallery
+
+The gallery page at `/gallery/` groups photos per event automatically.
+To add photos for an event, create a folder named after the event date and
+drop the images in:
+
+```
+src/assets/gallery/2026-08-16/01.jpg
+src/assets/gallery/2026-08-16/02.jpg
+```
+
+- Photos are sorted by filename — prefix with numbers to control the order.
+- Please resize photos to roughly 1600px wide before committing (a few
+  hundred KB each) so the page stays fast; 10–20 curated photos per event
+  works best.
+- The event's title comes from `events.json` (matched by date), and its
+  `photosUrl` doubles as the "Full album ↗" link on the gallery page.
+- The page also shows the upcoming events in an "Upcoming Sundays" box.
+
 ### Contact details, links, venue
 
 Edit [`src/data/site.json`](src/data/site.json) — organizer contact info,

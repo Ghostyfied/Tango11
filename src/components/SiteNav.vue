@@ -1,13 +1,19 @@
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import site from '../data/site.json'
 
-const links = [
-  { href: '#alma-del-sur', label: 'Alma del Sur' },
-  { href: '#agenda', label: 'Agenda' },
-  { href: '#info', label: 'Info' },
-  { href: '#contact', label: 'Contact' },
-]
+// base is '' on the main page and '../' on subpages like /gallery/
+const props = defineProps({
+  base: { type: String, default: '' },
+})
+
+const links = computed(() => [
+  { href: `${props.base}#alma-del-sur`, label: 'Alma del Sur' },
+  { href: `${props.base}#agenda`, label: 'Agenda' },
+  { href: `${props.base}gallery/`, label: 'Gallery' },
+  { href: `${props.base}#info`, label: 'Info' },
+  { href: `${props.base}#contact`, label: 'Contact' },
+])
 
 const scrolled = ref(false)
 const menuOpen = ref(false)
@@ -27,7 +33,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 <template>
   <header class="nav" :class="{ 'nav--solid': scrolled || menuOpen }">
     <div class="container nav-inner">
-      <a href="#top" class="brand" @click="menuOpen = false">
+      <a :href="`${props.base}#top`" class="brand" @click="menuOpen = false">
         Tango <span>11</span>
       </a>
 
