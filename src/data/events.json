@@ -86,17 +86,33 @@
   {
     "date": "2026-09-20",
     "title": "Alma del Sur · III",
-    "programme": [],
-    "notes": [
+    "programme": [
       {
-        "text": "[Beginners class](beginners/) at 18:00 by Julia Ozols (Ukraine) and Sebastian Coli Bazzini (Netherlands/Argentina).",
-        "photos": [
-          {
-            "file": "JuliaSebastian_1.jpeg",
-            "alt": "Julia Ozols & Sebastian Coli Bazzini",
-            "pos": "50% 62%"
-          }
-        ]
+        "time": "16:00",
+        "item": "Alma del Sur art expo (until 00:00), with a book presentation by **Juan Olake Ase**"
+      },
+      {
+        "time": "16:30",
+        "item": "Concert by **Cuarteto del Tango** (until 17:30)"
+      },
+      {
+        "time": "18:00",
+        "item": "Free [beginners class](beginners/) by Julia Ozols and Sebastian Coli Bazzini (until 19:00)",
+        "photo": "JuliaSebastian_1.jpeg",
+        "photoAlt": "Julia Ozols & Sebastian Coli Bazzini",
+        "photoPos": "50% 62%"
+      },
+      {
+        "time": "19:00",
+        "item": "Milonga with DJ **Lucas Antonisse** (until 00:00) — during the milonga: two live sets by **Cuarteto del Tango**"
+      },
+      {
+        "time": "21:30",
+        "item": "Performance by **Matteo Manferdini & Hilal Erçin**"
+      },
+      {
+        "time": "00:00",
+        "item": "La Cumparsita — closing of the night"
       }
     ],
     "cardLink": {
