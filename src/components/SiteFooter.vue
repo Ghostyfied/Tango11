@@ -2,6 +2,7 @@
 import site from '../data/site.json'
 import sponsorLogo from '../assets/img/logo-amsterdam.png'
 import venueLogo from '../assets/img/logo-willem.png'
+import muzeLogo from '../assets/img/muze_zuid_logo.jpg'
 import BokehLights from './BokehLights.vue'
 
 const year = new Date().getFullYear()
@@ -27,6 +28,9 @@ const year = new Date().getFullYear()
           </a>
           <a :href="site.venue.infoUrl" target="_blank" rel="noopener" class="logo-chip">
             <img :src="venueLogo" alt="Willem de Zwijgerkerk" loading="lazy" />
+          </a>
+          <a href="https://www.muzevanzuid.nl" target="_blank" rel="noopener" class="logo-chip">
+            <img :src="muzeLogo" alt="Muze van Zuid" loading="lazy" />
           </a>
         </div>
       </div>

@@ -93,7 +93,10 @@
       },
       {
         "time": "16:30",
-        "item": "Concert by **Cuarteto del Tango** (until 17:30)"
+        "item": "Concert by **Cuarteto del Tango** (until 17:30)",
+        "photo": "Zomerterras2025_Cuarteto_del_Tango_Marcel_100.jpg.jpeg",
+        "photoAlt": "Cuarteto del Tango",
+        "photoPos": "50% 32%"
       },
       {
         "time": "18:00",
@@ -108,7 +111,19 @@
       },
       {
         "time": "21:30",
-        "item": "Performance by **Matteo Manferdini & Hilal Erçin**"
+        "item": "Performance by **Matteo Manferdini & Hilal Erçin**",
+        "photos": [
+          {
+            "file": "hilalMatteo-Edit.jpeg",
+            "alt": "Matteo Manferdini & Hilal Erçin",
+            "pos": "30% 22%"
+          },
+          {
+            "file": "HilalMatteo2.jpeg",
+            "alt": "Matteo Manferdini & Hilal Erçin performing",
+            "pos": "48% 42%"
+          }
+        ]
       },
       {
         "time": "00:00",

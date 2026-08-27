@@ -34,6 +34,10 @@ onBeforeUnmount(() => {
 // Notes may be plain strings or { text, photos: [{ file, alt, pos }] }
 const asNote = (note) => (typeof note === 'string' ? { text: note, photos: [] } : { photos: [], ...note })
 
+// A programme entry carries either a photos array or a single photo/photoAlt/photoPos
+const entryPhotos = (entry) =>
+  entry.photos ?? (entry.photo ? [{ file: entry.photo, alt: entry.photoAlt, pos: entry.photoPos }] : [])
+
 // Escape HTML, then turn **text** into <strong> and [text](url) into links,
 // so data entries can bold names and link to pages
 function fmt(text) {
@@ -73,21 +77,24 @@ function fmt(text) {
           <li v-for="entry in next.programme" :key="entry.time + entry.item">
             <span class="programme-time">{{ entry.time }}</span>
             <span v-html="fmt(entry.item)"></span>
-            <button
-              v-if="entry.photo && photoSrc(entry.photo)"
-              type="button"
-              class="programme-photo-btn"
-              :aria-label="`Show full photo of ${entry.photoAlt || 'this artist'}`"
-              @click="lightbox = { src: photoSrc(entry.photo), alt: entry.photoAlt || '' }"
-            >
-              <img
-                class="programme-photo"
-                :src="photoSrc(entry.photo)"
-                :alt="entry.photoAlt || ''"
-                :style="entry.photoPos ? { objectPosition: entry.photoPos } : null"
-                loading="lazy"
-              />
-            </button>
+            <span v-if="entryPhotos(entry).length" class="programme-photos">
+              <button
+                v-for="photo in entryPhotos(entry)"
+                :key="photo.file"
+                type="button"
+                class="programme-photo-btn"
+                :aria-label="`Show full photo of ${photo.alt || 'this artist'}`"
+                @click="lightbox = { src: photoSrc(photo.file), alt: photo.alt || '' }"
+              >
+                <img
+                  class="programme-photo"
+                  :src="photoSrc(photo.file)"
+                  :alt="photo.alt || ''"
+                  :style="photo.pos ? { objectPosition: photo.pos } : null"
+                  loading="lazy"
+                />
+              </button>
+            </span>
           </li>
         </ol>
         <p v-else class="programme-tba">Full programme to be announced.</p>
@@ -231,16 +238,29 @@ function fmt(text) {
   color: var(--text);
 }
 
-/* DJ portraits echo the circular "bolletjes" motif */
-.programme-photo-btn {
+/* Artist portraits echo the circular "bolletjes" motif */
+.programme-photos {
   flex: 0 0 auto;
   margin-left: auto;
+  display: flex;
+}
+
+.programme-photo-btn {
   padding: 0;
   background: none;
   border: 0;
   border-radius: 50%;
   cursor: pointer;
   line-height: 0;
+}
+
+.programme-photo-btn + .programme-photo-btn {
+  margin-left: -0.8rem;
+}
+
+.programme-photo-btn:hover {
+  position: relative;
+  z-index: 2;
 }
 
 .programme-photo {
@@ -252,7 +272,7 @@ function fmt(text) {
   transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
-.programme li:hover .programme-photo {
+.programme-photo-btn:hover .programme-photo {
   transform: scale(1.6);
   border-color: var(--gold);
 }

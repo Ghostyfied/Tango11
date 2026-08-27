@@ -38,9 +38,10 @@ Edit [`src/data/events.json`](src/data/events.json). Each event looks like:
   to highlight it in bold (e.g. DJ names), and use `[text](url)` to make
   it a link (e.g. `[beginners class](beginners/)` for the poster page at
   `/beginners/`).
-- A programme entry can carry a round portrait: add `"photo"` (filename of
-  an image in `src/assets/img/`), `"photoAlt"`, and optionally
-  `"photoPos"` (CSS object-position, to aim the crop at the face).
+- A programme entry can carry round portraits: either a single `"photo"`
+  (filename of an image in `src/assets/img/`) with `"photoAlt"` and
+  optionally `"photoPos"` (CSS object-position, to aim the crop at the
+  face), or a `"photos": [{ "file", "alt", "pos" }]` array for multiple.
 - Optional `"photosUrl": "https://..."` on an event — shows an
   "Event photos ↗" link on its agenda card (e.g. a OneDrive album of a
   past event).
