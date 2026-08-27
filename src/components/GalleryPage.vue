@@ -25,8 +25,12 @@ for (const [path, url] of Object.entries(photoModules)) {
 }
 Object.values(photosByDate).forEach((list) => list.sort((a, b) => a.filename.localeCompare(b.filename)))
 
-// One gallery section per past event, newest first; an event without curated
-// photos still appears if it has a full-album link
+// Videos are YouTube embeds declared per event; thumbnails come from YouTube
+const videoThumb = (video) =>
+  `https://i.ytimg.com/vi/${video.youtubeId}/${video.portrait ? 'oardefault' : 'hqdefault'}.jpg`
+
+// One gallery section per past event, newest first. Videos and photos share
+// one item list; an event without items still appears if it has an album link
 const sections = computed(() => {
   const known = new Set()
   const result = sortByDate(events)
@@ -37,14 +41,24 @@ const sections = computed(() => {
       return {
         date: e.date,
         title: e.title,
-        photos: photosByDate[e.date] ?? [],
+        items: [
+          ...(e.videos ?? []).map((v) => ({ type: 'video', ...v })),
+          ...(photosByDate[e.date] ?? []).map((p) => ({ type: 'photo', ...p })),
+        ],
         albumUrl: e.photosUrl ?? null,
       }
     })
-    .filter((s) => s.photos.length || s.albumUrl)
+    .filter((s) => s.items.length || s.albumUrl)
   // Folders that don't match a known event still show, titled by their date
   for (const [date, photos] of Object.entries(photosByDate)) {
-    if (!known.has(date)) result.push({ date, title: formatDate(date), photos, albumUrl: null })
+    if (!known.has(date)) {
+      result.push({
+        date,
+        title: formatDate(date),
+        items: photos.map((p) => ({ type: 'photo', ...p })),
+        albumUrl: null,
+      })
+    }
   }
   return result
 })
@@ -59,7 +73,7 @@ const lightbox = ref(null)
 const current = computed(() => {
   if (!lightbox.value) return null
   const { section, index } = lightbox.value
-  return { ...section.photos[index], section, index }
+  return { ...section.items[index], section, index }
 })
 
 function open(section, index) {
@@ -69,7 +83,7 @@ function open(section, index) {
 function step(delta) {
   if (!lightbox.value) return
   const { section, index } = lightbox.value
-  const count = section.photos.length
+  const count = section.items.length
   lightbox.value = { section, index: (index + delta + count) % count }
 }
 
@@ -144,16 +158,25 @@ onBeforeUnmount(() => {
           </a>
         </header>
 
-        <div v-if="section.photos.length" class="photo-grid">
+        <div v-if="section.items.length" class="photo-grid">
           <button
-            v-for="(photo, i) in section.photos"
-            :key="photo.filename"
+            v-for="(item, i) in section.items"
+            :key="item.type === 'video' ? item.youtubeId : item.filename"
             type="button"
             class="photo"
-            :aria-label="`Show photo ${i + 1} of ${section.title} full-screen`"
+            :aria-label="
+              item.type === 'video'
+                ? `Play video: ${item.title || section.title}`
+                : `Show photo ${i + 1} of ${section.title} full-screen`
+            "
             @click="open(section, i)"
           >
-            <img :src="photo.url" :alt="`${section.title} — photo ${i + 1}`" loading="lazy" />
+            <img
+              :src="item.type === 'video' ? videoThumb(item) : item.url"
+              :alt="item.type === 'video' ? item.title || `${section.title} — video` : `${section.title} — photo ${i + 1}`"
+              loading="lazy"
+            />
+            <span v-if="item.type === 'video'" class="play-badge" aria-hidden="true">▶</span>
           </button>
         </div>
         <p v-else class="event-empty">
@@ -173,13 +196,26 @@ onBeforeUnmount(() => {
     <Transition name="lightbox">
       <div v-if="current" class="lightbox" @click.self="lightbox = null">
         <figure>
-          <img :src="current.url" :alt="`${current.section.title} — photo ${current.index + 1}`" />
+          <iframe
+            v-if="current.type === 'video'"
+            class="lightbox-video"
+            :class="{ 'lightbox-video--portrait': current.portrait }"
+            :src="`https://www.youtube-nocookie.com/embed/${current.youtubeId}?autoplay=1&rel=0`"
+            :title="current.title || current.section.title"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+          <img
+            v-else
+            :src="current.url"
+            :alt="`${current.section.title} — photo ${current.index + 1}`"
+          />
           <figcaption>
-            {{ current.section.title }} · {{ current.index + 1 }} / {{ current.section.photos.length }}
+            {{ current.section.title }} · {{ current.index + 1 }} / {{ current.section.items.length }}
           </figcaption>
         </figure>
         <button
-          v-if="current.section.photos.length > 1"
+          v-if="current.section.items.length > 1"
           type="button"
           class="lightbox-nav lightbox-nav--prev"
           aria-label="Previous photo"
@@ -188,7 +224,7 @@ onBeforeUnmount(() => {
           ‹
         </button>
         <button
-          v-if="current.section.photos.length > 1"
+          v-if="current.section.items.length > 1"
           type="button"
           class="lightbox-nav lightbox-nav--next"
           aria-label="Next photo"
@@ -320,6 +356,7 @@ onBeforeUnmount(() => {
 }
 
 .photo {
+  position: relative;
   padding: 0;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -327,6 +364,31 @@ onBeforeUnmount(() => {
   overflow: hidden;
   cursor: zoom-in;
   aspect-ratio: 1;
+}
+
+.play-badge {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 3.2rem;
+  height: 3.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 0.25rem;
+  border-radius: 50%;
+  background: rgba(14, 11, 9, 0.72);
+  border: 1px solid var(--line-strong);
+  color: var(--gold-bright);
+  font-size: 1.1rem;
+  pointer-events: none;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.photo:hover .play-badge {
+  background: var(--c-magenta);
+  color: #fff;
+  transform: scale(1.08);
 }
 
 .photo img {
@@ -370,6 +432,22 @@ onBeforeUnmount(() => {
   max-height: 82vh;
   border-radius: var(--radius);
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+}
+
+.lightbox-video {
+  border: 0;
+  border-radius: var(--radius);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+  width: min(60rem, 86vw);
+  aspect-ratio: 16 / 9;
+  max-height: 82vh;
+}
+
+.lightbox-video--portrait {
+  width: auto;
+  height: 82vh;
+  aspect-ratio: 9 / 16;
+  max-width: 92vw;
 }
 
 .lightbox figcaption {

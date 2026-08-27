@@ -75,6 +75,10 @@ src/assets/gallery/2026-08-16/02.jpg
   works best.
 - The event's title comes from `events.json` (matched by date), and its
   `photosUrl` doubles as the "Full album ↗" link on the gallery page.
+- Videos: upload to YouTube and add to the event in `events.json`:
+  `"videos": [{ "youtubeId": "abc123", "title": "...", "portrait": true }]`
+  (set `portrait` for Shorts/vertical video). They appear as play tiles in
+  the event's grid and play in the lightbox.
 - The page also shows the upcoming events in an "Upcoming Sundays" box.
 
 ### Contact details, links, venue
