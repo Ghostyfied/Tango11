@@ -14,15 +14,19 @@ const others = events.filter((e) => e !== next)
 const images = import.meta.glob('../assets/img/*', { eager: true, import: 'default' })
 const photoSrc = (name) => images[`../assets/img/${name}`]
 
-// Clicking a portrait opens the full photo in a lightbox
+// Clicking a portrait opens the full photo in a lightbox; past cards can
+// open their programme in a popup
 const lightbox = ref(null)
+const programmeModal = ref(null)
 
-watch(lightbox, (open) => {
-  document.body.style.overflow = open ? 'hidden' : ''
+watch([lightbox, programmeModal], ([lb, pm]) => {
+  document.body.style.overflow = lb || pm ? 'hidden' : ''
 })
 
 function onKeydown(e) {
-  if (e.key === 'Escape') lightbox.value = null
+  if (e.key !== 'Escape') return
+  if (lightbox.value) lightbox.value = null
+  else programmeModal.value = null
 }
 
 onMounted(() => window.addEventListener('keydown', onKeydown))
@@ -151,22 +155,79 @@ function fmt(text) {
             <p>
               {{ isPast(event.date) ? 'This event has passed' : formatDate(event.date) }}
             </p>
-            <a
-              v-if="event.photosUrl"
-              :href="event.photosUrl"
-              target="_blank"
-              rel="noopener"
-              class="card-photos"
-            >
-              Event photos ↗
-            </a>
-            <a v-if="event.cardLink" :href="event.cardLink.url" class="card-photos">
-              {{ event.cardLink.text }}
-            </a>
+            <span class="card-links">
+              <a
+                v-if="event.photosUrl"
+                :href="event.photosUrl"
+                target="_blank"
+                rel="noopener"
+                class="card-photos"
+              >
+                Event photos ↗
+              </a>
+              <button
+                v-if="isPast(event.date) && event.programme.length"
+                type="button"
+                class="card-photos card-programme"
+                @click="programmeModal = event"
+              >
+                Programme
+              </button>
+              <a v-if="event.cardLink" :href="event.cardLink.url" class="card-photos">
+                {{ event.cardLink.text }}
+              </a>
+            </span>
           </div>
         </article>
       </div>
     </div>
+
+    <Teleport to="body">
+      <Transition name="lightbox">
+        <div
+          v-if="programmeModal"
+          class="modal-backdrop"
+          @click.self="programmeModal = null"
+        >
+          <div class="modal" role="dialog" aria-modal="true" :aria-label="`Programme of ${programmeModal.title}`">
+            <p class="featured-label">{{ formatDate(programmeModal.date) }}</p>
+            <h3 class="modal-title">{{ programmeModal.title }}</h3>
+            <ol class="programme">
+              <li v-for="entry in programmeModal.programme" :key="entry.time + entry.item">
+                <span class="programme-time">{{ entry.time }}</span>
+                <span v-html="fmt(entry.item)"></span>
+                <span v-if="entryPhotos(entry).length" class="programme-photos">
+                  <button
+                    v-for="photo in entryPhotos(entry)"
+                    :key="photo.file"
+                    type="button"
+                    class="programme-photo-btn"
+                    :aria-label="`Show full photo of ${photo.alt || 'this artist'}`"
+                    @click="lightbox = { src: photoSrc(photo.file), alt: photo.alt || '' }"
+                  >
+                    <img
+                      class="programme-photo"
+                      :src="photoSrc(photo.file)"
+                      :alt="photo.alt || ''"
+                      :style="photo.pos ? { objectPosition: photo.pos } : null"
+                      loading="lazy"
+                    />
+                  </button>
+                </span>
+              </li>
+            </ol>
+            <button
+              type="button"
+              class="lightbox-close"
+              aria-label="Close programme"
+              @click="programmeModal = null"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
 
     <Teleport to="body">
       <Transition name="lightbox">
@@ -495,6 +556,12 @@ function fmt(text) {
   opacity: 1;
 }
 
+.card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1rem;
+}
+
 .card-photos {
   display: inline-block;
   margin-top: 0.35rem;
@@ -505,6 +572,51 @@ function fmt(text) {
 
 .card-photos:hover {
   color: var(--text);
+}
+
+.card-programme {
+  padding: 0;
+  background: none;
+  border: 0;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+/* Programme popup for past events */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(14, 11, 9, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 1.5rem;
+}
+
+.modal {
+  position: relative;
+  width: min(38rem, 100%);
+  max-height: 85vh;
+  overflow-y: auto;
+  background: var(--bg-raised);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+}
+
+.modal-title {
+  font-size: 1.9rem;
+  margin-bottom: 1rem;
+}
+
+.modal .lightbox-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
 }
 
 .card-date {
