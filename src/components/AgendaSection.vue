@@ -192,6 +192,9 @@ function fmt(text) {
           <div class="modal" role="dialog" aria-modal="true" :aria-label="`Programme of ${programmeModal.title}`">
             <p class="featured-label">{{ formatDate(programmeModal.date) }}</p>
             <h3 class="modal-title">{{ programmeModal.title }}</h3>
+            <p v-if="programmeModal.subtitle" class="featured-sub modal-sub">
+              {{ programmeModal.subtitle }}
+            </p>
             <ol class="programme">
               <li v-for="entry in programmeModal.programme" :key="entry.time + entry.item">
                 <span class="programme-time">{{ entry.time }}</span>
@@ -216,6 +219,29 @@ function fmt(text) {
                 </span>
               </li>
             </ol>
+            <ul v-if="programmeModal.notes?.length" class="notes modal-notes">
+              <li v-for="note in programmeModal.notes.map(asNote)" :key="note.text">
+                <span class="note-text" v-html="fmt(note.text)"></span>
+                <span v-if="note.photos.length" class="note-photos">
+                  <button
+                    v-for="photo in note.photos"
+                    :key="photo.file"
+                    type="button"
+                    class="note-photo-btn"
+                    :aria-label="`Show full photo of ${photo.alt}`"
+                    @click="lightbox = { src: photoSrc(photo.file), alt: photo.alt }"
+                  >
+                    <img
+                      class="note-photo"
+                      :src="photoSrc(photo.file)"
+                      :alt="photo.alt"
+                      :style="photo.pos ? { objectPosition: photo.pos } : null"
+                      loading="lazy"
+                    />
+                  </button>
+                </span>
+              </li>
+            </ul>
             <button
               type="button"
               class="lightbox-close"
@@ -617,6 +643,18 @@ function fmt(text) {
   position: absolute;
   top: 0.75rem;
   right: 1rem;
+}
+
+.modal-sub {
+  margin-bottom: 1.25rem;
+}
+
+.modal-notes {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0.6rem;
 }
 
 .card-date {
