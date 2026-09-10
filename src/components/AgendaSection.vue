@@ -166,7 +166,7 @@ function fmt(text) {
                 Event photos ↗
               </a>
               <button
-                v-if="isPast(event.date) && event.programme.length"
+                v-if="isPast(event.date) && (event.programmeImage || event.programme.length)"
                 type="button"
                 class="card-photos card-programme"
                 @click="programmeModal = event"
@@ -189,7 +189,21 @@ function fmt(text) {
           class="modal-backdrop"
           @click.self="programmeModal = null"
         >
-          <div class="modal" role="dialog" aria-modal="true" :aria-label="`Programme of ${programmeModal.title}`">
+          <div
+            class="modal"
+            :class="{ 'modal--image': programmeModal.programmeImage }"
+            role="dialog"
+            aria-modal="true"
+            :aria-label="`Programme of ${programmeModal.title}`"
+          >
+            <template v-if="programmeModal.programmeImage">
+              <img
+                class="modal-flyer"
+                :src="photoSrc(programmeModal.programmeImage)"
+                :alt="`Programme of ${programmeModal.title}, ${formatDate(programmeModal.date)}`"
+              />
+            </template>
+            <template v-else>
             <p class="featured-label">{{ formatDate(programmeModal.date) }}</p>
             <h3 class="modal-title">{{ programmeModal.title }}</h3>
             <p v-if="programmeModal.subtitle" class="featured-sub modal-sub">
@@ -242,6 +256,7 @@ function fmt(text) {
                 </span>
               </li>
             </ul>
+            </template>
             <button
               type="button"
               class="lightbox-close"
@@ -647,6 +662,25 @@ function fmt(text) {
 
 .modal-sub {
   margin-bottom: 1.25rem;
+}
+
+/* When the programme is an official flyer image, show just the flyer */
+.modal--image {
+  padding: 0;
+  background: #fff;
+}
+
+.modal-flyer {
+  display: block;
+  width: 100%;
+}
+
+.modal--image .lightbox-close {
+  color: rgba(14, 11, 9, 0.55);
+}
+
+.modal--image .lightbox-close:hover {
+  color: rgba(14, 11, 9, 0.9);
 }
 
 .modal-notes {

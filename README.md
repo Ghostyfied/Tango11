@@ -47,6 +47,9 @@ Edit [`src/data/events.json`](src/data/events.json). Each event looks like:
   past event).
 - Optional `"cardLink": { "text", "url" }` on an event — an extra small
   link on its compact agenda card (e.g. to the beginners-class page).
+- Optional `"programmeImage"` on an event (filename in `src/assets/img/`):
+  the past-event "Programme" popup then shows that official flyer image
+  instead of the data-built timetable.
 - Optional `"reservation": { "text": "...", "url": "https://..." }` — a
   highlighted reservation call-out; leave `url` empty (`""`) to show
   "Reservation link follows soon."
