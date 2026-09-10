@@ -4,6 +4,7 @@ import sponsorLogo from '../assets/img/logo-amsterdam.png'
 import venueLogo from '../assets/img/logo-willem.png'
 import muzeLogo from '../assets/img/muze_zuid_logo.jpg'
 import BokehLights from './BokehLights.vue'
+import { t } from '../i18n/index.js'
 
 const year = new Date().getFullYear()
 </script>
@@ -21,7 +22,7 @@ const year = new Date().getFullYear()
       </div>
 
       <div class="footer-sponsor">
-        <p class="footer-muted">Project Alma del Sur is supported by</p>
+        <p class="footer-muted">{{ t('footer.supportedBy') }}</p>
         <div class="footer-logos">
           <a :href="site.links.sponsor" target="_blank" rel="noopener" class="logo-chip">
             <img :src="sponsorLogo" alt="Gemeente Amsterdam" loading="lazy" />

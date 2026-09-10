@@ -1,47 +1,40 @@
 <script setup>
-defineProps({
+import { pick, t } from '../i18n/index.js'
+
+const props = defineProps({
   food: { type: Object, required: true },
 })
+
+const introHtml = () =>
+  t('food.intro', {
+    partner: pick(props.food.partner),
+    price: pick(props.food.price),
+    served: pick(props.food.servedWindow),
+  })
 </script>
 
 <template>
   <div id="food" class="food">
-    <h4 class="food-title">Want to order food?</h4>
-    <p class="food-intro">
-      We have partnered with <strong>{{ food.partner }}</strong> to offer
-      empanadas at this event: {{ food.price }} per set of three, served
-      between {{ food.servedWindow }}. Pre-order and pre-pay only (Tikkie) —
-      ordering is a <strong>two-step</strong> process.
-    </p>
-    <p class="food-disclaimer">
-      For each order of three empanadas you have to complete the process again.
-    </p>
+    <h4 class="food-title">{{ t('food.title') }}</h4>
+    <p class="food-intro" v-html="introHtml()"></p>
+    <p class="food-disclaimer">{{ t('food.disclaimer') }}</p>
 
     <div class="food-steps">
       <article class="food-step">
         <span class="food-step-badge food-step-badge--magenta">1</span>
-        <h5>Order</h5>
-        <p>
-          Fill in the order form — then come back here for step two, because
-          your order is not complete until it is paid.
-        </p>
+        <h5>{{ t('food.step1Title') }}</h5>
+        <p>{{ t('food.step1Text') }}</p>
         <a :href="food.formUrl" target="_blank" rel="noopener" class="btn btn--gold">
-          Order here ↗
+          {{ t('food.orderBtn') }}
         </a>
-        <p class="food-nb">
-          NB: an order is only final once payment has been received. Order and
-          pay before {{ food.deadline }}.
-        </p>
+        <p class="food-nb">{{ t('food.nb', { deadline: pick(food.deadline) }) }}</p>
       </article>
 
       <article class="food-step">
         <span class="food-step-badge food-step-badge--blue">2</span>
-        <h5>Pay</h5>
-        <p>
-          Completed the order form? Then pay by Tikkie using the QR code on
-          our payment page.
-        </p>
-        <a href="pay/" class="btn btn--ghost">Pay by Tikkie here</a>
+        <h5>{{ t('food.step2Title') }}</h5>
+        <p>{{ t('food.step2Text') }}</p>
+        <a href="pay/" class="btn btn--ghost">{{ t('food.payBtn') }}</a>
       </article>
     </div>
   </div>

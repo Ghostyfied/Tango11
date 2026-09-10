@@ -1,6 +1,7 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import site from '../data/site.json'
+import { lang, setLang, t } from '../i18n/index.js'
 
 // base is '' on the main page and '../' on subpages like /gallery/
 const props = defineProps({
@@ -9,10 +10,10 @@ const props = defineProps({
 
 const links = computed(() => [
   { href: `${props.base}#alma-del-sur`, label: 'Alma del Sur' },
-  { href: `${props.base}#agenda`, label: 'Agenda' },
-  { href: `${props.base}gallery/`, label: 'Gallery' },
-  { href: `${props.base}#info`, label: 'Info' },
-  { href: `${props.base}#contact`, label: 'Contact' },
+  { href: `${props.base}#agenda`, label: t('nav.agenda') },
+  { href: `${props.base}gallery/`, label: t('nav.gallery') },
+  { href: `${props.base}#info`, label: t('nav.info') },
+  { href: `${props.base}#contact`, label: t('nav.contact') },
 ])
 
 const scrolled = ref(false)
@@ -45,6 +46,28 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
           Soñando&thinsp;↗
         </a>
       </nav>
+
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button
+          type="button"
+          :class="{ 'is-active': lang === 'en' }"
+          lang="en"
+          aria-label="English"
+          @click="setLang('en')"
+        >
+          EN
+        </button>
+        <span aria-hidden="true">/</span>
+        <button
+          type="button"
+          :class="{ 'is-active': lang === 'nl' }"
+          lang="nl"
+          aria-label="Nederlands"
+          @click="setLang('nl')"
+        >
+          NL
+        </button>
+      </div>
 
       <button
         class="nav-toggle"
@@ -116,6 +139,35 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
   color: var(--gold) !important;
 }
 
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--text-faint);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.lang-switch button {
+  padding: 0.25rem 0.1rem;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--text-muted);
+  font: inherit;
+  letter-spacing: inherit;
+  transition: color 0.2s ease;
+}
+
+.lang-switch button:hover {
+  color: var(--text);
+}
+
+.lang-switch button.is-active {
+  color: var(--gold-bright);
+}
+
 .nav-toggle {
   display: none;
   background: none;
@@ -164,6 +216,11 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 @media (max-width: 760px) {
   .nav-toggle {
     display: block;
+  }
+
+  .lang-switch {
+    margin-left: auto;
+    margin-right: 1.25rem;
   }
 
   .nav-links {

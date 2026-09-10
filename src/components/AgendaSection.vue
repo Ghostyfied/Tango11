@@ -5,6 +5,7 @@ import eventsData from '../data/events.json'
 import { dayNumber, formatDate, isPast, monthLabel, nextEvent, sortByDate } from '../utils/events.js'
 import BokehLights from './BokehLights.vue'
 import FoodOrdering from './FoodOrdering.vue'
+import { pick, t } from '../i18n/index.js'
 
 const events = sortByDate(eventsData)
 const next = nextEvent(events)
@@ -60,34 +61,34 @@ function fmt(text) {
     <BokehLights :seed="3" :count="12" pattern="edges" />
     <div class="container">
       <div data-reveal>
-        <p class="section-eyebrow">Agenda</p>
-        <h2 class="section-title">Six Sundays</h2>
+        <p class="section-eyebrow">{{ t('agenda.eyebrow') }}</p>
+        <h2 class="section-title">{{ t('agenda.title') }}</h2>
         <p class="section-lead">
-          Every third Sunday of the month. Please check
+          {{ t('agenda.leadBefore') }}
           <a :href="site.links.tangokalender" target="_blank" rel="noopener">Tangokalender</a>
-          for confirmation, changes and exceptions.
+          {{ t('agenda.leadAfter') }}
         </p>
       </div>
 
       <article v-if="next" class="featured" data-reveal>
         <div class="featured-head">
-          <p class="featured-label">Next event</p>
+          <p class="featured-label">{{ t('agenda.nextEvent') }}</p>
           <h3 class="featured-date">{{ formatDate(next.date) }}</h3>
-          <p class="featured-title">{{ next.title }}</p>
-          <p v-if="next.subtitle" class="featured-sub">{{ next.subtitle }}</p>
+          <p class="featured-title">{{ pick(next.title) }}</p>
+          <p v-if="next.subtitle" class="featured-sub">{{ pick(next.subtitle) }}</p>
         </div>
 
         <ol v-if="next.programme.length" class="programme">
-          <li v-for="entry in next.programme" :key="entry.time + entry.item">
+          <li v-for="entry in next.programme" :key="entry.time + pick(entry.item)">
             <span class="programme-time">{{ entry.time }}</span>
-            <span v-html="fmt(entry.item)"></span>
+            <span v-html="fmt(pick(entry.item))"></span>
             <span v-if="entryPhotos(entry).length" class="programme-photos">
               <button
                 v-for="photo in entryPhotos(entry)"
                 :key="photo.file"
                 type="button"
                 class="programme-photo-btn"
-                :aria-label="`Show full photo of ${photo.alt || 'this artist'}`"
+                :aria-label="`${t('agenda.showPhotoOf')} ${photo.alt || ''}`"
                 @click="lightbox = { src: photoSrc(photo.file), alt: photo.alt || '' }"
               >
                 <img
@@ -101,18 +102,18 @@ function fmt(text) {
             </span>
           </li>
         </ol>
-        <p v-else class="programme-tba">Full programme to be announced.</p>
+        <p v-else class="programme-tba">{{ t('agenda.tba') }}</p>
 
         <ul v-if="next.notes?.length" class="notes">
-          <li v-for="note in next.notes.map(asNote)" :key="note.text">
-            <span class="note-text" v-html="fmt(note.text)"></span>
+          <li v-for="note in next.notes.map(asNote)" :key="pick(note.text)">
+            <span class="note-text" v-html="fmt(pick(note.text))"></span>
             <span v-if="note.photos.length" class="note-photos">
               <button
                 v-for="photo in note.photos"
                 :key="photo.file"
                 type="button"
                 class="note-photo-btn"
-                :aria-label="`Show full photo of ${photo.alt}`"
+                :aria-label="`${t('agenda.showPhotoOf')} ${photo.alt}`"
                 @click="lightbox = { src: photoSrc(photo.file), alt: photo.alt }"
               >
                 <img
@@ -128,11 +129,11 @@ function fmt(text) {
         </ul>
 
         <p v-if="next.reservation" class="reservation">
-          {{ next.reservation.text }}
+          {{ pick(next.reservation.text) }}
           <a v-if="next.reservation.url" :href="next.reservation.url" target="_blank" rel="noopener">
-            Reserve here ↗
+            {{ t('agenda.reserveHere') }}
           </a>
-          <em v-else>Reservation link follows soon.</em>
+          <em v-else>{{ t('agenda.reservationSoon') }}</em>
         </p>
 
         <FoodOrdering v-if="next.foodOrdering" :food="next.foodOrdering" />
@@ -151,9 +152,9 @@ function fmt(text) {
             <span class="card-month">{{ monthLabel(event.date) }}</span>
           </div>
           <div>
-            <h4>{{ event.title }}</h4>
+            <h4>{{ pick(event.title) }}</h4>
             <p>
-              {{ isPast(event.date) ? 'This event has passed' : formatDate(event.date) }}
+              {{ isPast(event.date) ? t('agenda.passed') : formatDate(event.date) }}
             </p>
             <span class="card-links">
               <a
@@ -163,7 +164,7 @@ function fmt(text) {
                 rel="noopener"
                 class="card-photos"
               >
-                Event photos ↗
+                {{ t('agenda.eventPhotos') }}
               </a>
               <button
                 v-if="isPast(event.date) && (event.programmeImage || event.programme.length)"
@@ -171,10 +172,10 @@ function fmt(text) {
                 class="card-photos card-programme"
                 @click="programmeModal = event"
               >
-                Programme
+                {{ t('agenda.programme') }}
               </button>
               <a v-if="event.cardLink" :href="event.cardLink.url" class="card-photos">
-                {{ event.cardLink.text }}
+                {{ pick(event.cardLink.text) }}
               </a>
             </span>
           </div>
@@ -194,32 +195,32 @@ function fmt(text) {
             :class="{ 'modal--image': programmeModal.programmeImage }"
             role="dialog"
             aria-modal="true"
-            :aria-label="`Programme of ${programmeModal.title}`"
+            :aria-label="`${t('agenda.programmeOf')} ${pick(programmeModal.title)}`"
           >
             <template v-if="programmeModal.programmeImage">
               <img
                 class="modal-flyer"
                 :src="photoSrc(programmeModal.programmeImage)"
-                :alt="`Programme of ${programmeModal.title}, ${formatDate(programmeModal.date)}`"
+                :alt="`${t('agenda.programmeOf')} ${pick(programmeModal.title)}, ${formatDate(programmeModal.date)}`"
               />
             </template>
             <template v-else>
             <p class="featured-label">{{ formatDate(programmeModal.date) }}</p>
-            <h3 class="modal-title">{{ programmeModal.title }}</h3>
+            <h3 class="modal-title">{{ pick(programmeModal.title) }}</h3>
             <p v-if="programmeModal.subtitle" class="featured-sub modal-sub">
-              {{ programmeModal.subtitle }}
+              {{ pick(programmeModal.subtitle) }}
             </p>
             <ol class="programme">
-              <li v-for="entry in programmeModal.programme" :key="entry.time + entry.item">
+              <li v-for="entry in programmeModal.programme" :key="entry.time + pick(entry.item)">
                 <span class="programme-time">{{ entry.time }}</span>
-                <span v-html="fmt(entry.item)"></span>
+                <span v-html="fmt(pick(entry.item))"></span>
                 <span v-if="entryPhotos(entry).length" class="programme-photos">
                   <button
                     v-for="photo in entryPhotos(entry)"
                     :key="photo.file"
                     type="button"
                     class="programme-photo-btn"
-                    :aria-label="`Show full photo of ${photo.alt || 'this artist'}`"
+                    :aria-label="`${t('agenda.showPhotoOf')} ${photo.alt || ''}`"
                     @click="lightbox = { src: photoSrc(photo.file), alt: photo.alt || '' }"
                   >
                     <img
@@ -234,15 +235,15 @@ function fmt(text) {
               </li>
             </ol>
             <ul v-if="programmeModal.notes?.length" class="notes modal-notes">
-              <li v-for="note in programmeModal.notes.map(asNote)" :key="note.text">
-                <span class="note-text" v-html="fmt(note.text)"></span>
+              <li v-for="note in programmeModal.notes.map(asNote)" :key="pick(note.text)">
+                <span class="note-text" v-html="fmt(pick(note.text))"></span>
                 <span v-if="note.photos.length" class="note-photos">
                   <button
                     v-for="photo in note.photos"
                     :key="photo.file"
                     type="button"
                     class="note-photo-btn"
-                    :aria-label="`Show full photo of ${photo.alt}`"
+                    :aria-label="`${t('agenda.showPhotoOf')} ${photo.alt}`"
                     @click="lightbox = { src: photoSrc(photo.file), alt: photo.alt }"
                   >
                     <img
@@ -260,7 +261,7 @@ function fmt(text) {
             <button
               type="button"
               class="lightbox-close"
-              aria-label="Close programme"
+              :aria-label="t('agenda.closeProgramme')"
               @click="programmeModal = null"
             >
               ×
@@ -277,7 +278,7 @@ function fmt(text) {
             <img :src="lightbox.src" :alt="lightbox.alt" />
             <figcaption v-if="lightbox.alt">{{ lightbox.alt }}</figcaption>
           </figure>
-          <button type="button" class="lightbox-close" aria-label="Close photo">×</button>
+          <button type="button" class="lightbox-close" :aria-label="t('agenda.closePhoto')">×</button>
         </div>
       </Transition>
     </Teleport>

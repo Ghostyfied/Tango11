@@ -1,6 +1,9 @@
 <script setup>
 import BokehLights from './BokehLights.vue'
 import poster from '../assets/img/beginnersles_background.jpeg'
+import { usePageMeta } from '../i18n/index.js'
+
+usePageMeta('beginners')
 </script>
 
 <template>

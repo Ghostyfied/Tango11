@@ -1,7 +1,7 @@
 <script setup>
-import site from '../data/site.json'
 import banner from '../assets/img/alma-banner.jpeg'
 import BokehLights from './BokehLights.vue'
+import { t } from '../i18n/index.js'
 </script>
 
 <template>
@@ -9,22 +9,13 @@ import BokehLights from './BokehLights.vue'
     <BokehLights :seed="2" :count="10" pattern="diagonal" />
     <div class="container">
       <div data-reveal>
-        <p class="section-eyebrow">The project</p>
+        <p class="section-eyebrow">{{ t('project.eyebrow') }}</p>
         <h2 class="section-title">Alma del Sur</h2>
-        <p class="section-lead">
-          Six Sundays in 2026, every third Sunday of the month, the
-          {{ site.venue.name }} in Amsterdam turns into a tango salon. Milongas
-          and special events — live music and performances, workshops for
-          different levels, tango lectures, and an art expo on the theme of
-          the embrace, by artists who dance.
-        </p>
+        <p class="section-lead">{{ t('project.lead') }}</p>
       </div>
 
       <figure class="banner" data-reveal>
-        <img
-          :src="banner"
-          alt="Alma del Sur — Tango 11 poster: milongas and special events, workshops for different levels, tango lectures, art expo, live music, performances and much more. Save the dates: 19 July, 16 August, 20 September, 18 October, 15 November, 20 December."
-        />
+        <img :src="banner" :alt="t('project.bannerAlt')" />
       </figure>
     </div>
   </section>

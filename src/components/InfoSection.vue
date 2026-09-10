@@ -2,6 +2,7 @@
 import site from '../data/site.json'
 import kompaszaalPhoto from '../assets/img/kompaszaal-marijke.jpg'
 import BokehLights from './BokehLights.vue'
+import { t } from '../i18n/index.js'
 </script>
 
 <template>
@@ -9,45 +10,43 @@ import BokehLights from './BokehLights.vue'
     <BokehLights :seed="4" :count="10" pattern="corners" />
     <div class="container">
       <div data-reveal>
-        <p class="section-eyebrow">Practical</p>
-        <h2 class="section-title">Venue &amp; entrance</h2>
+        <p class="section-eyebrow">{{ t('info.eyebrow') }}</p>
+        <h2 class="section-title">{{ t('info.title') }}</h2>
       </div>
 
       <div class="info-grid">
         <div class="info-cards">
           <article class="info-card" data-reveal>
-            <h3>The venue</h3>
+            <h3>{{ t('info.venueTitle') }}</h3>
             <p>
               <strong>{{ site.venue.name }}</strong><br />
               {{ site.venue.street }}<br />
               {{ site.venue.zipCity }}, {{ site.venue.country }}
             </p>
-            <p class="info-parking">Parking on Sundays is free around the venue!</p>
+            <p class="info-parking">{{ t('info.parking') }}</p>
             <p class="info-links">
-              <a :href="site.venue.mapsUrl" target="_blank" rel="noopener">Open in Maps ↗</a>
-              <a :href="site.venue.infoUrl" target="_blank" rel="noopener">About the church ↗</a>
+              <a :href="site.venue.mapsUrl" target="_blank" rel="noopener">{{ t('info.openMaps') }}</a>
+              <a :href="site.venue.infoUrl" target="_blank" rel="noopener">{{ t('info.aboutChurch') }}</a>
             </p>
           </article>
 
           <article class="info-card" data-reveal>
-            <h3>Entrance &amp; payment</h3>
-            <p>
-              Pay at the door — by QR-code or cash. No reservation needed.
-            </p>
+            <h3>{{ t('info.paymentTitle') }}</h3>
+            <p>{{ t('info.paymentText') }}</p>
           </article>
 
           <article class="info-card" data-reveal>
-            <h3>Stay up to date</h3>
+            <h3>{{ t('info.stayTitle') }}</h3>
             <p class="info-links info-links--column">
-              <a :href="site.links.facebookPage" target="_blank" rel="noopener">Tango 11 Facebook page ↗</a>
-              <a :href="site.links.facebookGroup" target="_blank" rel="noopener">Tango 11 Facebook group ↗</a>
+              <a :href="site.links.facebookPage" target="_blank" rel="noopener">{{ t('info.fbPage') }}</a>
+              <a :href="site.links.facebookGroup" target="_blank" rel="noopener">{{ t('info.fbGroup') }}</a>
               <a :href="site.links.tangokalender" target="_blank" rel="noopener">Tangokalender ↗</a>
             </p>
           </article>
         </div>
 
         <figure class="info-photo" data-reveal>
-          <img :src="kompaszaalPhoto" alt="Marijke de Vries at a Tango 11 salon" loading="lazy" />
+          <img :src="kompaszaalPhoto" :alt="t('info.photoAlt')" loading="lazy" />
         </figure>
       </div>
     </div>

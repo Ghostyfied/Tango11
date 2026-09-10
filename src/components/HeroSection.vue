@@ -1,35 +1,32 @@
 <script setup>
-import site from '../data/site.json'
 import events from '../data/events.json'
 import { formatDate, nextEvent } from '../utils/events.js'
+import { t } from '../i18n/index.js'
 
 const next = nextEvent(events)
 </script>
 
 <template>
   <section id="top" class="hero">
-    <div class="hero-bg" role="img" aria-label="Couples dancing tango at a milonga at night"></div>
+    <div class="hero-bg" role="img" :aria-label="t('hero.bgAlt')"></div>
     <div class="hero-overlay"></div>
     <div class="bokeh" aria-hidden="true">
       <span v-for="n in 8" :key="n"></span>
     </div>
 
     <div class="container hero-content">
-      <p class="hero-eyebrow">{{ site.name }} presents</p>
+      <p class="hero-eyebrow">{{ t('hero.presents') }}</p>
       <h1 class="hero-title">Alma <em>del</em> Sur</h1>
-      <p class="hero-sub">
-        Six Sundays of tango — milongas with live music, performances,
-        visual art and classes at the {{ site.venue.name }}, Amsterdam.
-      </p>
+      <p class="hero-sub">{{ t('hero.sub') }}</p>
 
       <div class="hero-actions">
-        <a href="#agenda" class="btn btn--gold">See the agenda</a>
-        <a href="#alma-del-sur" class="btn btn--ghost">About the project</a>
+        <a href="#agenda" class="btn btn--gold">{{ t('hero.seeAgenda') }}</a>
+        <a href="#alma-del-sur" class="btn btn--ghost">{{ t('hero.aboutProject') }}</a>
       </div>
 
       <p v-if="next" class="hero-next">
-        <span class="hero-next-label">Next event</span>
-        {{ formatDate(next.date) }} · every third Sunday of the month
+        <span class="hero-next-label">{{ t('hero.nextEvent') }}</span>
+        {{ formatDate(next.date) }} · {{ t('hero.thirdSunday') }}
       </p>
     </div>
 

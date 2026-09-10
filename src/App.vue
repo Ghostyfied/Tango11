@@ -8,8 +8,10 @@ import ContactSection from './components/ContactSection.vue'
 import SiteFooter from './components/SiteFooter.vue'
 import { onMounted } from 'vue'
 import { useReveal } from './composables/useReveal.js'
+import { usePageMeta } from './i18n/index.js'
 
 useReveal()
+usePageMeta('main')
 
 // Deep links like /#food need a scroll after Vue has rendered the content
 onMounted(() => {

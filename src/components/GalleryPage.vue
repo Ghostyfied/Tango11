@@ -6,8 +6,10 @@ import SiteNav from './SiteNav.vue'
 import SiteFooter from './SiteFooter.vue'
 import BokehLights from './BokehLights.vue'
 import { useReveal } from '../composables/useReveal.js'
+import { pick, t, usePageMeta } from '../i18n/index.js'
 
 useReveal()
+usePageMeta('gallery')
 
 // Photos are auto-discovered from src/assets/gallery/<YYYY-MM-DD>/ folders
 const photoModules = import.meta.glob('../assets/gallery/*/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}', {
@@ -40,7 +42,7 @@ const sections = computed(() => {
       known.add(e.date)
       return {
         date: e.date,
-        title: e.title,
+        title: pick(e.title),
         items: [
           ...(e.videos ?? []).map((v) => ({ type: 'video', ...v })),
           ...(photosByDate[e.date] ?? []).map((p) => ({ type: 'photo', ...p })),
@@ -113,16 +115,13 @@ onBeforeUnmount(() => {
 
     <div class="container">
       <div data-reveal>
-        <p class="section-eyebrow">Gallery</p>
-        <h2 class="section-title">Moments from the salon</h2>
-        <p class="section-lead">
-          Impressions from the Alma del Sur Sundays at the Willem de
-          Zwijgerkerk — and what's still to come.
-        </p>
+        <p class="section-eyebrow">{{ t('gallery.eyebrow') }}</p>
+        <h2 class="section-title">{{ t('gallery.title') }}</h2>
+        <p class="section-lead">{{ t('gallery.lead') }}</p>
       </div>
 
       <aside v-if="upcoming.length" class="upcoming" data-reveal>
-        <h3 class="upcoming-title">Upcoming Sundays</h3>
+        <h3 class="upcoming-title">{{ t('gallery.upcoming') }}</h3>
         <div class="upcoming-list">
           <a
             v-for="(event, i) in upcoming"
@@ -134,7 +133,7 @@ onBeforeUnmount(() => {
               {{ dayNumber(event.date) }}
             </span>
             <span class="upcoming-meta">
-              <strong>{{ event.title }}</strong>
+              <strong>{{ pick(event.title) }}</strong>
               {{ monthLabel(event.date) }}
             </span>
           </a>
@@ -154,7 +153,7 @@ onBeforeUnmount(() => {
             rel="noopener"
             class="event-album"
           >
-            Full album ↗
+            {{ t('gallery.fullAlbum') }}
           </a>
         </header>
 
@@ -166,27 +165,23 @@ onBeforeUnmount(() => {
             class="photo"
             :aria-label="
               item.type === 'video'
-                ? `Play video: ${item.title || section.title}`
-                : `Show photo ${i + 1} of ${section.title} full-screen`
+                ? `${t('gallery.playVideo')}: ${pick(item.title) || section.title}`
+                : `${t('agenda.showPhotoOf')} ${section.title} (${i + 1})`
             "
             @click="open(section, i)"
           >
             <img
               :src="item.type === 'video' ? videoThumb(item) : item.url"
-              :alt="item.type === 'video' ? item.title || `${section.title} — video` : `${section.title} — photo ${i + 1}`"
+              :alt="item.type === 'video' ? pick(item.title) || `${section.title} — ${t('gallery.video')}` : `${section.title} — ${t('gallery.photo')} ${i + 1}`"
               loading="lazy"
             />
             <span v-if="item.type === 'video'" class="play-badge" aria-hidden="true">▶</span>
           </button>
         </div>
-        <p v-else class="event-empty">
-          Curated photos follow soon — meanwhile, enjoy the full album.
-        </p>
+        <p v-else class="event-empty">{{ t('gallery.curatedSoon') }}</p>
       </section>
 
-      <p v-if="!sections.length" class="event-empty">
-        Photos from the first Sundays are coming soon.
-      </p>
+      <p v-if="!sections.length" class="event-empty">{{ t('gallery.comingSoon') }}</p>
     </div>
   </main>
 
@@ -201,14 +196,14 @@ onBeforeUnmount(() => {
             class="lightbox-video"
             :class="{ 'lightbox-video--portrait': current.portrait }"
             :src="`https://www.youtube-nocookie.com/embed/${current.youtubeId}?autoplay=1&rel=0`"
-            :title="current.title || current.section.title"
+            :title="pick(current.title) || current.section.title"
             allow="autoplay; encrypted-media; picture-in-picture"
             allowfullscreen
           ></iframe>
           <img
             v-else
             :src="current.url"
-            :alt="`${current.section.title} — photo ${current.index + 1}`"
+            :alt="`${current.section.title} — ${t('gallery.photo')} ${current.index + 1}`"
           />
           <figcaption>
             {{ current.section.title }} · {{ current.index + 1 }} / {{ current.section.items.length }}
@@ -218,7 +213,7 @@ onBeforeUnmount(() => {
           v-if="current.section.items.length > 1"
           type="button"
           class="lightbox-nav lightbox-nav--prev"
-          aria-label="Previous photo"
+          :aria-label="t('gallery.prevPhoto')"
           @click="step(-1)"
         >
           ‹
@@ -227,12 +222,12 @@ onBeforeUnmount(() => {
           v-if="current.section.items.length > 1"
           type="button"
           class="lightbox-nav lightbox-nav--next"
-          aria-label="Next photo"
+          :aria-label="t('gallery.nextPhoto')"
           @click="step(1)"
         >
           ›
         </button>
-        <button type="button" class="lightbox-close" aria-label="Close photo" @click="lightbox = null">
+        <button type="button" class="lightbox-close" :aria-label="t('gallery.closePhoto')" @click="lightbox = null">
           ×
         </button>
       </div>

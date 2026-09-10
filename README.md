@@ -8,6 +8,21 @@ Built with [Vue 3](https://vuejs.org) and [Vite](https://vite.dev) as a fast,
 single-page static site. No CMS, no backend — all content lives in two small
 JSON files.
 
+## Languages
+
+The site is bilingual (English/Dutch) with an EN/NL switch in the navbar.
+The choice is remembered per visitor; Dutch browsers get NL automatically,
+everyone else English. `?lang=nl` in a link forces Dutch (handy for
+Facebook posts). UI texts live in `src/i18n/en.js` and `src/i18n/nl.js`.
+In `events.json`, any text field can be bilingual:
+
+```json
+"item": { "en": "Concert by ...", "nl": "Concert door ..." }
+```
+
+A plain string is shown in both languages (English fallback), so
+translations can be added incrementally.
+
 ## Editing content
 
 ### Events / agenda

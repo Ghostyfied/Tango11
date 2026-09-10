@@ -1,11 +1,20 @@
-const monthNames = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December',
-]
+import { lang } from '../i18n/index.js'
 
-const dayNames = [
-  'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
-]
+const monthNames = {
+  en: [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December',
+  ],
+  nl: [
+    'januari', 'februari', 'maart', 'april', 'mei', 'juni',
+    'juli', 'augustus', 'september', 'oktober', 'november', 'december',
+  ],
+}
+
+const dayNames = {
+  en: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+  nl: ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'],
+}
 
 export function parseDate(iso) {
   const [y, m, d] = iso.split('-').map(Number)
@@ -14,17 +23,19 @@ export function parseDate(iso) {
 
 export function formatDate(iso) {
   const date = parseDate(iso)
-  return `${dayNames[date.getDay()]} ${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`
+  const day = dayNames[lang.value][date.getDay()]
+  const month = monthNames[lang.value][date.getMonth()]
+  return `${day} ${date.getDate()} ${month} ${date.getFullYear()}`
 }
 
 export function formatShort(iso) {
   const date = parseDate(iso)
-  return `${date.getDate()} ${monthNames[date.getMonth()]}`
+  return `${date.getDate()} ${monthNames[lang.value][date.getMonth()]}`
 }
 
 export function monthLabel(iso) {
   const date = parseDate(iso)
-  return monthNames[date.getMonth()]
+  return monthNames[lang.value][date.getMonth()]
 }
 
 export function dayNumber(iso) {

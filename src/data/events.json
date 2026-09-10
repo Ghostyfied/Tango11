@@ -1,8 +1,14 @@
 [
   {
     "date": "2026-07-19",
-    "title": "Official Opening Night",
-    "subtitle": "The opening of Project Alma del Sur",
+    "title": {
+      "en": "Official Opening Night",
+      "nl": "Officiële Openingsavond"
+    },
+    "subtitle": {
+      "en": "The opening of Project Alma del Sur",
+      "nl": "De opening van Project Alma del Sur"
+    },
     "programmeImage": "programma_juli_19.png",
     "photosUrl": "https://www.facebook.com/share/p/1DJQeKwjtP/",
     "programme": [
@@ -104,29 +110,44 @@
     "programme": [
       {
         "time": "16:00",
-        "item": "Alma del Sur art expo (until 00:00), with a book presentation by **Juan Olake Ase**"
+        "item": {
+          "en": "Alma del Sur art expo (until 00:00), with a book presentation by **Juan Olake Ase**",
+          "nl": "Alma del Sur expositie (tot 00:00), met een boekpresentatie door **Juan Olake Ase**"
+        }
       },
       {
         "time": "16:30",
-        "item": "Concert by **Cuarteto del Tango** (until 17:30)",
+        "item": {
+          "en": "Concert by **Cuarteto del Tango** (until 17:30)",
+          "nl": "Concert door **Cuarteto del Tango** (tot 17:30)"
+        },
         "photo": "Zomerterras2025_Cuarteto_del_Tango_Marcel_100.jpg.jpeg",
         "photoAlt": "Cuarteto del Tango",
         "photoPos": "50% 32%"
       },
       {
         "time": "18:00",
-        "item": "Free [beginners class](beginners/) by Julia Ozols and Sebastian Coli Bazzini (until 19:00)",
+        "item": {
+          "en": "Free [beginners class](beginners/) by Julia Ozols and Sebastian Coli Bazzini (until 19:00)",
+          "nl": "Gratis [beginnersles](beginners/) door Julia Ozols en Sebastian Coli Bazzini (tot 19:00)"
+        },
         "photo": "JuliaSebastian_1.jpeg",
         "photoAlt": "Julia Ozols & Sebastian Coli Bazzini",
         "photoPos": "50% 62%"
       },
       {
         "time": "19:00",
-        "item": "Milonga with DJ **Lucas Antonisse** (until 00:00) — during the milonga: two live sets by **Cuarteto del Tango**"
+        "item": {
+          "en": "Milonga with DJ **Lucas Antonisse** (until 00:00) — during the milonga: two live sets by **Cuarteto del Tango**",
+          "nl": "Milonga met DJ **Lucas Antonisse** (tot 00:00) — tijdens de milonga: twee live sets door **Cuarteto del Tango**"
+        }
       },
       {
         "time": "21:30",
-        "item": "Performance by **Matteo Manferdini & Hilal Erçin**",
+        "item": {
+          "en": "Performance by **Matteo Manferdini & Hilal Erçin**",
+          "nl": "Optreden van **Matteo Manferdini & Hilal Erçin**"
+        },
         "photos": [
           {
             "file": "hilalMatteo-Edit.jpeg",
@@ -142,11 +163,17 @@
       },
       {
         "time": "00:00",
-        "item": "La Cumparsita — closing of the night"
+        "item": {
+          "en": "La Cumparsita — closing of the night",
+          "nl": "La Cumparsita — afsluiting van de avond"
+        }
       }
     ],
     "cardLink": {
-      "text": "Beginners class at 18:00",
+      "text": {
+        "en": "Beginners class at 18:00",
+        "nl": "Beginnersles om 18:00"
+      },
       "url": "beginners/"
     }
   },

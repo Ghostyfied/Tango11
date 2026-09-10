@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import site from '../data/site.json'
 import portrait from '../assets/img/marijke.png'
 import BokehLights from './BokehLights.vue'
+import { t } from '../i18n/index.js'
 
 // Assembled at runtime to keep the address out of the static HTML for scrapers
 const email = computed(() => `${site.contact.emailUser}@${site.contact.emailDomain}`)
@@ -14,31 +15,29 @@ const email = computed(() => `${site.contact.emailUser}@${site.contact.emailDoma
     <div class="container">
       <div class="contact-grid">
         <figure class="portrait" data-reveal>
-          <img :src="portrait" :alt="`Portrait of ${site.contact.name}`" loading="lazy" />
+          <img :src="portrait" :alt="t('contact.portraitAlt')" loading="lazy" />
         </figure>
 
         <div data-reveal>
-          <p class="section-eyebrow">Contact</p>
+          <p class="section-eyebrow">{{ t('contact.eyebrow') }}</p>
           <h2 class="section-title">{{ site.contact.name }}</h2>
           <p class="section-lead">
-            {{ site.contact.role }} of {{ site.name }} and Project
-            {{ site.project }}. Questions about the project, the programme or
-            the venue? Get in touch.
+            {{ t('contact.lead') }}
           </p>
 
           <ul class="contact-list">
             <li>
-              <span>Phone</span>
+              <span>{{ t('contact.phone') }}</span>
               <a :href="`tel:${site.contact.phone}`">{{ site.contact.phoneDisplay }}</a>
             </li>
             <li>
-              <span>E-mail</span>
+              <span>{{ t('contact.email') }}</span>
               <a :href="`mailto:${email}`">{{ email }}</a>
             </li>
             <li>
-              <span>Also by Marijke</span>
+              <span>{{ t('contact.alsoBy') }}</span>
               <a :href="site.links.sonando" target="_blank" rel="noopener">
-                Soñando Tango Marathon ↗
+                {{ t('contact.sonando') }}
               </a>
             </li>
           </ul>

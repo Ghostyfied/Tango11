@@ -1,6 +1,9 @@
 <script setup>
 import BokehLights from './BokehLights.vue'
+import { t, usePageMeta } from '../i18n/index.js'
 import qr from '../assets/img/tikkie-qr.png'
+
+usePageMeta('pay')
 </script>
 
 <template>
@@ -11,25 +14,15 @@ import qr from '../assets/img/tikkie-qr.png'
       <a href="../" class="pay-back">← Tango <span>11</span> · Alma del Sur</a>
 
       <section class="pay-card">
-        <p class="section-eyebrow">Step 2 · Payment</p>
-        <h1 class="pay-title">Pay for your empanadas</h1>
+        <p class="section-eyebrow">{{ t('pay.eyebrow') }}</p>
+        <h1 class="pay-title">{{ t('pay.title') }}</h1>
 
-        <p class="pay-text">
-          This page is <strong>only</strong> for paying for pre-ordered
-          empanadas — please complete the step&nbsp;1 order form on
-          <a href="../#food">the agenda page</a> before making a payment.
-          Your order is only valid once it has been paid for.
-        </p>
-        <p class="pay-text">
-          Make <strong>one Tikkie payment of €15 per set of three
-          empanadas</strong> ordered. All payments must clear by
-          <strong>23:59 on Wednesday 12 August</strong>. We apologise that we
-          can only accept Tikkie payments at this time.
-        </p>
+        <p class="pay-text" v-html="t('pay.onlyFor')"></p>
+        <p class="pay-text" v-html="t('pay.amount')"></p>
 
         <figure v-if="qr" class="pay-qr">
-          <img :src="qr" alt="Tikkie payment QR code" />
-          <figcaption>Scan with your phone's camera or banking app</figcaption>
+          <img :src="qr" :alt="t('pay.qrAlt')" />
+          <figcaption>{{ t('pay.scan') }}</figcaption>
         </figure>
         <div v-else class="pay-qr pay-qr--placeholder">
           <p>The Tikkie QR code will appear here shortly.</p>
