@@ -37,10 +37,7 @@ const year = new Date().getFullYear()
     </div>
 
     <div class="container footer-bottom">
-      <p class="footer-muted">
-        © {{ year }} {{ site.name }} · Photography by
-        <a href="https://hrum.nl" target="_blank" rel="noopener">Marta Kossakowska</a>
-      </p>
+      <p class="footer-muted">© {{ year }} {{ site.name }}</p>
     </div>
   </footer>
 </template>
