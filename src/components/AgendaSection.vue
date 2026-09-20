@@ -5,7 +5,15 @@ import eventsData from '../data/events.json'
 import { dayNumber, formatDate, isPast, monthLabel, nextEvent, sortByDate } from '../utils/events.js'
 import BokehLights from './BokehLights.vue'
 import FoodOrdering from './FoodOrdering.vue'
+import registrations from '../data/registration.json'
+import { openCourseModal } from '../composables/useCourseModal.js'
 import { pick, t } from '../i18n/index.js'
+
+// A course teaser shows on events linked to an open registration config
+const courseFor = (event) => {
+  const course = event.registration && registrations[event.registration]
+  return course && !course.closed ? { id: event.registration, ...course } : null
+}
 
 const events = sortByDate(eventsData)
 const next = nextEvent(events)
@@ -137,6 +145,21 @@ function fmt(text) {
         </p>
 
         <FoodOrdering v-if="next.foodOrdering" :food="next.foodOrdering" />
+
+        <div v-if="courseFor(next)" class="featured-course">
+          <div class="featured-course-body">
+            <p class="featured-label">{{ t('course.promoEyebrow') }}</p>
+            <h4>{{ pick(courseFor(next).title) }}</h4>
+            <p>{{ pick(courseFor(next).priceLine) }}</p>
+          </div>
+          <button
+            type="button"
+            class="btn btn--gold"
+            @click="openCourseModal(courseFor(next).id)"
+          >
+            {{ t('course.register') }}
+          </button>
+        </div>
       </article>
 
       <div class="grid">
@@ -177,6 +200,14 @@ function fmt(text) {
               <a v-if="event.cardLink" :href="event.cardLink.url" class="card-photos">
                 {{ pick(event.cardLink.text) }}
               </a>
+              <button
+                v-if="!isPast(event.date) && courseFor(event)"
+                type="button"
+                class="card-photos card-programme"
+                @click="openCourseModal(courseFor(event).id)"
+              >
+                {{ pick(courseFor(event).shortTitle) }} · {{ t('course.register') }}
+              </button>
             </span>
           </div>
         </article>
@@ -550,6 +581,38 @@ function fmt(text) {
 
 .notes li:nth-child(3n + 3) .note-text::before {
   background: var(--c-blue);
+}
+
+/* Course registration teaser inside the featured card */
+.featured-course {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1.4rem;
+}
+
+.featured-course-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.featured-course h4 {
+  font-size: 1.35rem;
+  margin: 0.15rem 0 0.3rem;
+}
+
+.featured-course p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  .featured-course {
+    flex-wrap: wrap;
+  }
 }
 
 .reservation {

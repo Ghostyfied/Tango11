@@ -180,16 +180,19 @@
   {
     "date": "2026-10-18",
     "title": "Alma del Sur · IV",
-    "programme": []
+    "programme": [],
+    "registration": "fundamentos"
   },
   {
     "date": "2026-11-15",
     "title": "Alma del Sur · V",
-    "programme": []
+    "programme": [],
+    "registration": "fundamentos"
   },
   {
     "date": "2026-12-20",
     "title": "Alma del Sur · VI",
-    "programme": []
+    "programme": [],
+    "registration": "fundamentos"
   }
 ]

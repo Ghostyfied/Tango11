@@ -1,6 +1,8 @@
 <script setup>
 import SiteNav from './components/SiteNav.vue'
 import HeroSection from './components/HeroSection.vue'
+import CoursePromo from './components/CoursePromo.vue'
+import CourseRegistration from './components/CourseRegistration.vue'
 import AlmaSection from './components/AlmaSection.vue'
 import AgendaSection from './components/AgendaSection.vue'
 import InfoSection from './components/InfoSection.vue'
@@ -28,10 +30,12 @@ onMounted(() => {
   <SiteNav />
   <main>
     <HeroSection />
+    <CoursePromo />
     <AlmaSection />
     <AgendaSection />
     <InfoSection />
     <ContactSection />
   </main>
   <SiteFooter />
+  <CourseRegistration />
 </template>

@@ -1,0 +1,62 @@
+{
+  "fundamentos": {
+    "promo": true,
+    "closed": false,
+    "organiserEmailUser": "info",
+    "organiserEmailDomain": "marijkedevries.nl",
+    "title": {
+      "en": "Fundamentos — tango course by Lucas & Mira",
+      "nl": "Fundamentos — tangocursus door Lucas & Mira"
+    },
+    "shortTitle": {
+      "en": "Fundamentos course",
+      "nl": "Cursus Fundamentos"
+    },
+    "description": {
+      "en": "A three-part course on the fundamentals of Argentine tango, taught by dance couple Lucas & Mira during the last three Alma del Sur Sundays. More about the course and the teachers follows soon.",
+      "nl": "Een driedelige cursus over de fundamenten van de Argentijnse tango, gegeven door danspaar Lucas & Mira tijdens de laatste drie Alma del Sur-zondagen. Meer over de cursus en de docenten volgt binnenkort."
+    },
+    "schedule": {
+      "en": "Lesson times will be announced soon.",
+      "nl": "De lestijden worden binnenkort bekendgemaakt."
+    },
+    "image": "",
+    "priceLine": {
+      "en": "€15 per person per lesson · registration per couple",
+      "nl": "€15 per persoon per les · inschrijven per danspaar"
+    },
+    "lessons": [
+      {
+        "date": "2026-10-18",
+        "label": { "en": "Lesson 1 · Sunday 18 October", "nl": "Les 1 · zondag 18 oktober" },
+        "price": "€30",
+        "paymentUrl": "",
+        "qrImage": "",
+        "closed": false
+      },
+      {
+        "date": "2026-11-15",
+        "label": { "en": "Lesson 2 · Sunday 15 November", "nl": "Les 2 · zondag 15 november" },
+        "price": "€30",
+        "paymentUrl": "",
+        "qrImage": "",
+        "closed": false
+      },
+      {
+        "date": "2026-12-20",
+        "label": { "en": "Lesson 3 · Sunday 20 December", "nl": "Les 3 · zondag 20 december" },
+        "price": "€30",
+        "paymentUrl": "",
+        "qrImage": "",
+        "closed": false
+      }
+    ],
+    "fullCourse": {
+      "label": { "en": "Full course · 3 lessons", "nl": "Volledige cursus · 3 lessen" },
+      "price": "€90",
+      "paymentUrl": "",
+      "qrImage": "",
+      "closed": false
+    }
+  }
+}
