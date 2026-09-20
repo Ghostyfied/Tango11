@@ -159,14 +159,14 @@ async function submit() {
                 <input v-model="form.choice" type="radio" value="lesson" />
                 <span>
                   {{ t('course.nextLessonPrefix') }}: {{ pick(nextLesson.label) }}
-                  <strong>· {{ nextLesson.price }}</strong>
+                  <strong>· {{ t('course.payAmount', { price: nextLesson.price }) }}</strong>
                 </span>
               </label>
               <label v-if="fullCourseAvailable">
                 <input v-model="form.choice" type="radio" value="course" />
                 <span>
                   {{ pick(course.fullCourse.label) }}
-                  <strong>· {{ course.fullCourse.price }}</strong>
+                  <strong>· {{ t('course.payAmount', { price: course.fullCourse.price }) }}</strong>
                 </span>
               </label>
             </fieldset>
