@@ -20,7 +20,7 @@
       "en": "Lesson times will be announced soon.",
       "nl": "De lestijden worden binnenkort bekendgemaakt."
     },
-    "image": "",
+    "image": "lucas-mira.jpg",
     "priceLine": {
       "en": "€15 per person per lesson · registration per couple",
       "nl": "€15 per persoon per les · inschrijven per danspaar"
@@ -28,34 +28,46 @@
     "lessons": [
       {
         "date": "2026-10-18",
-        "label": { "en": "Lesson 1 · Sunday 18 October", "nl": "Les 1 · zondag 18 oktober" },
+        "label": {
+          "en": "Lesson 1 · Sunday 18 October",
+          "nl": "Les 1 · zondag 18 oktober"
+        },
         "price": "€30",
-        "paymentUrl": "",
-        "qrImage": "",
+        "paymentUrl": "https://www.ing.nl/payreq/m/?trxid=UOsJsXsJ9FAIalB60kJ4Bd6M1MivXX1m",
+        "qrImage": "fundamentos-qr-les.png",
         "closed": false
       },
       {
         "date": "2026-11-15",
-        "label": { "en": "Lesson 2 · Sunday 15 November", "nl": "Les 2 · zondag 15 november" },
+        "label": {
+          "en": "Lesson 2 · Sunday 15 November",
+          "nl": "Les 2 · zondag 15 november"
+        },
         "price": "€30",
-        "paymentUrl": "",
-        "qrImage": "",
+        "paymentUrl": "https://www.ing.nl/payreq/m/?trxid=UOsJsXsJ9FAIalB60kJ4Bd6M1MivXX1m",
+        "qrImage": "fundamentos-qr-les.png",
         "closed": false
       },
       {
         "date": "2026-12-20",
-        "label": { "en": "Lesson 3 · Sunday 20 December", "nl": "Les 3 · zondag 20 december" },
+        "label": {
+          "en": "Lesson 3 · Sunday 20 December",
+          "nl": "Les 3 · zondag 20 december"
+        },
         "price": "€30",
-        "paymentUrl": "",
-        "qrImage": "",
+        "paymentUrl": "https://www.ing.nl/payreq/m/?trxid=UOsJsXsJ9FAIalB60kJ4Bd6M1MivXX1m",
+        "qrImage": "fundamentos-qr-les.png",
         "closed": false
       }
     ],
     "fullCourse": {
-      "label": { "en": "Full course · 3 lessons", "nl": "Volledige cursus · 3 lessen" },
+      "label": {
+        "en": "Full course · 3 lessons",
+        "nl": "Volledige cursus · 3 lessen"
+      },
       "price": "€90",
-      "paymentUrl": "",
-      "qrImage": "",
+      "paymentUrl": "https://www.ing.nl/payreq/m/?trxid=gjsvo35dfgUCHGGt6cqn9BnXC3jotCzg",
+      "qrImage": "fundamentos-qr-cursus.png",
       "closed": false
     }
   }
