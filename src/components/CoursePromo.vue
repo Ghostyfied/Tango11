@@ -18,17 +18,19 @@ const promoted = Object.entries(registrations)
   <section v-if="promoted.length" class="promo-strip">
     <div class="container">
       <div v-for="course in promoted" :key="course.id" class="promo" data-reveal>
-        <div v-if="imgSrc(course.image)" class="promo-photo">
-          <img :src="imgSrc(course.image)" :alt="pick(course.title)" />
-        </div>
-        <div v-else class="promo-photo promo-photo--placeholder" aria-hidden="true">
-          <span>L&amp;M</span>
-        </div>
-        <div class="promo-body">
-          <p class="promo-eyebrow">{{ t('course.promoEyebrow') }}</p>
-          <h3>{{ pick(course.title) }}</h3>
-          <p class="promo-price">{{ pick(course.priceLine) }}</p>
-        </div>
+        <button type="button" class="promo-open" @click="openCourseModal(course.id)">
+          <span v-if="imgSrc(course.image)" class="promo-photo">
+            <img :src="imgSrc(course.image)" :alt="pick(course.title)" />
+          </span>
+          <span v-else class="promo-photo promo-photo--placeholder" aria-hidden="true">
+            <span>L&amp;M</span>
+          </span>
+          <span class="promo-body">
+            <span class="promo-eyebrow">{{ t('course.promoEyebrow') }}</span>
+            <span class="promo-title">{{ pick(course.title) }}</span>
+            <span class="promo-price">{{ pick(course.priceLine) }}</span>
+          </span>
+        </button>
         <button type="button" class="btn btn--gold promo-btn" @click="openCourseModal(course.id)">
           {{ t('course.register') }}
         </button>
@@ -50,6 +52,26 @@ const promoted = Object.entries(registrations)
   display: flex;
   align-items: center;
   gap: 1.25rem;
+}
+
+/* The photo + text area is one big click target for the modal */
+.promo-open {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.promo-open:hover .promo-title {
+  color: var(--gold-bright);
 }
 
 .promo-photo {
@@ -80,6 +102,9 @@ const promoted = Object.entries(registrations)
 .promo-body {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .promo-eyebrow {
@@ -88,16 +113,18 @@ const promoted = Object.entries(registrations)
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--c-magenta);
-  margin: 0 0 0.25rem;
 }
 
-.promo h3 {
+.promo-title {
+  font-family: var(--font-display);
+  font-weight: 600;
   font-size: 1.35rem;
-  margin: 0 0 0.25rem;
+  line-height: 1.2;
+  color: var(--text);
+  transition: color 0.2s ease;
 }
 
 .promo-price {
-  margin: 0;
   font-size: 0.82rem;
   color: var(--text-muted);
 }
