@@ -120,6 +120,8 @@ async function submit() {
             ×
           </button>
 
+          <div class="course-grid">
+            <div class="course-main">
           <div class="course-head">
             <div v-if="imgSrc(course.image)" class="course-photo">
               <img :src="imgSrc(course.image)" :alt="pick(course.title)" />
@@ -247,6 +249,16 @@ async function submit() {
               <a :href="mailtoFallback" class="btn btn--gold">{{ t('course.errorMail') }}</a>
             </div>
           </div>
+            </div>
+
+            <aside v-if="course.details?.length" class="course-aside">
+              <p class="course-aside-eyebrow">{{ t('course.aboutTitle') }}</p>
+              <div v-for="block in course.details" :key="pick(block.heading)" class="course-more-block">
+                <h5>{{ pick(block.heading) }}</h5>
+                <p class="course-text">{{ pick(block.text) }}</p>
+              </div>
+            </aside>
+          </div>
         </div>
       </div>
     </Transition>
@@ -345,6 +357,42 @@ async function submit() {
 .course-schedule strong {
   color: var(--text);
   font-weight: 600;
+}
+
+/* Two columns from 900px: registration flow left, course info right */
+.course-aside {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .course-modal {
+    width: min(62rem, calc(100vw - 3rem));
+  }
+
+  .course-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+    gap: 2.25rem;
+  }
+
+  .course-aside {
+    display: block;
+    border-left: 1px solid var(--line);
+    padding-left: 2.25rem;
+  }
+
+  .course-more {
+    display: none;
+  }
+}
+
+.course-aside-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin: 0.3rem 0 0;
 }
 
 .course-more {
