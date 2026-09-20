@@ -99,6 +99,31 @@ src/assets/gallery/2026-08-16/02.jpg
   the event's grid and play in the lightbox.
 - The page also shows the upcoming events in an "Upcoming Sundays" box.
 
+### Course registration (no backend)
+
+Registrable courses live in [`src/data/registration.json`](src/data/registration.json),
+one config object per course. Events point at a course via
+`"registration": "<id>"` in `events.json`; those agenda cards (and the
+featured card) then show a Register button, and `"promo": true` also shows
+a banner on the home page (set to `false` to remove it).
+
+- Bookable options are always **the next upcoming lesson** or the **full
+  course** (the latter only until the first lesson has passed). Close an
+  individual lesson with its `"closed": true`; close everything with the
+  course-level `"closed": true`.
+- Per option: `price`, `paymentUrl` (Tikkie link) and `qrImage` (filename
+  in `src/assets/img/`). Leave them `""` and the flow shows "payment
+  details follow by e-mail" instead. **Tikkie links expire** — regenerate
+  and update them periodically.
+- Submissions are e-mailed to the organiser via Formsubmit
+  (`organiserEmailUser`/`Domain` in the config). **The very first
+  submission triggers an activation e-mail that the organiser must click**
+  — do a test registration before promoting. No e-mail is sent to the
+  registrant; the success screen shows the payment details.
+- Texts (`title`, `description`, `schedule`, `priceLine`, labels) are
+  bilingual `{ "en", "nl" }` objects; `image` is a photo filename in
+  `src/assets/img/`.
+
 ### Contact details, links, venue
 
 Edit [`src/data/site.json`](src/data/site.json) — organizer contact info,
