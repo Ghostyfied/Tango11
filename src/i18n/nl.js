@@ -104,6 +104,7 @@ export default {
     promoEyebrow: 'Nieuwe cursus',
     register: 'Inschrijven',
     aboutTitle: 'Over de cursus',
+    moreInfo: 'Meer over de cursus & de docenten',
     scheduleTitle: 'Lestijden',
     choiceLabel: 'Inschrijven voor',
     nextLessonPrefix: 'Eerstvolgende les',

@@ -5,16 +5,12 @@
     "organiserEmailUser": "info",
     "organiserEmailDomain": "marijkedevries.nl",
     "title": {
-      "en": "Fundamentos — tango course by Lucas & Mira",
-      "nl": "Fundamentos — tangocursus door Lucas & Mira"
+      "en": "A Taste of our Fundamentals — by Lucas & Mira",
+      "nl": "A Taste of our Fundamentals — door Lucas & Mira"
     },
     "shortTitle": {
-      "en": "Fundamentos course",
-      "nl": "Cursus Fundamentos"
-    },
-    "description": {
-      "en": "A three-part course on the fundamentals of Argentine tango, taught by dance couple Lucas & Mira during the last three Alma del Sur Sundays. More about the course and the teachers follows soon.",
-      "nl": "Een driedelige cursus over de fundamenten van de Argentijnse tango, gegeven door danspaar Lucas & Mira tijdens de laatste drie Alma del Sur-zondagen. Meer over de cursus en de docenten volgt binnenkort."
+      "en": "Fundamentals course",
+      "nl": "Fundamentals-cursus"
     },
     "schedule": {
       "en": "Lesson times will be announced soon.",
@@ -69,6 +65,42 @@
       "paymentUrl": "https://www.ing.nl/payreq/m/?trxid=gjsvo35dfgUCHGGt6cqn9BnXC3jotCzg",
       "qrImage": "fundamentos-qr-cursus.png",
       "closed": false
-    }
+    },
+    "intro": {
+      "en": "A three-part tango course by Lucas Malec & Mira van de Griendt during the last three Alma del Sur Sundays. Social dancing is about much more than memorizing steps — this course focuses on the exact elements that make dancing at a milonga pleasurable for you and your partners: the fundamentals.",
+      "nl": "Een driedelige tangocursus door Lucas Malec & Mira van de Griendt tijdens de laatste drie Alma del Sur-zondagen. Sociaal dansen draait om veel meer dan passen onthouden — deze cursus richt zich op precies die elementen die het dansen op een milonga plezierig maken voor jou en je partners: de fundamentals."
+    },
+    "details": [
+      {
+        "heading": {
+          "en": "Our philosophy",
+          "nl": "Onze filosofie"
+        },
+        "text": {
+          "en": "We believe that enjoying a social dance at a milonga is much more about posture, balance, musicality, relaxation and mindset than about memorizing steps or sequences. That is why this course focuses on the exact elements that make social dancing pleasurable for both you and your partners. We call these elements the fundamentals — not because they are basic, but because they are the essential pillars without which your progress will always be limited by a lack of foundation. The 7 fundamentals: embrace, musicality, connection, posture, the walk, grounding & balance, and mindset & relaxation.",
+          "nl": "Wij geloven dat plezier in sociaal dansen op een milonga veel meer draait om houding, balans, muzikaliteit, ontspanning en mindset dan om het onthouden van passen of sequenties. Daarom richt deze cursus zich op precies die elementen die sociaal dansen plezierig maken voor jou én je partners. We noemen deze elementen de fundamentals — niet omdat ze basaal zijn, maar omdat het de essentiële pijlers zijn zonder welke je vooruitgang altijd beperkt blijft door een gebrek aan fundament. De 7 fundamentals: omhelzing, muzikaliteit, verbinding, houding, de wandeling, gronding & balans, en mindset & ontspanning."
+        }
+      },
+      {
+        "heading": {
+          "en": "What we will focus on",
+          "nl": "Waar we aan werken"
+        },
+        "text": {
+          "en": "For this series we explore three specific topics to develop your fundamentals: musicality, pivots, and up-and-down flow. Through years of experience, and together with a test group, we have created a unique method for teaching and learning tango. In our classes we all work proactively as a team: feedback flows not just from teacher to student, but also between students — in a safe space where everyone feels open, conscious and free to give and receive feedback.",
+          "nl": "In deze serie verkennen we drie specifieke thema's om je fundamentals te ontwikkelen: muzikaliteit, pivots en op-en-neergaande flow. Door jarenlange ervaring, en samen met een testgroep, hebben we een unieke methode ontwikkeld om tango te leren en te onderwijzen. In onze lessen werken we allemaal proactief als team: feedback stroomt niet alleen van docent naar cursist, maar ook tussen cursisten onderling — in een veilige omgeving waarin iedereen zich open, bewust en vrij voelt om feedback te geven en te ontvangen."
+        }
+      },
+      {
+        "heading": {
+          "en": "Who is this for?",
+          "nl": "Voor wie is dit?"
+        },
+        "text": {
+          "en": "This course is designed for dancers who feel a drive and an urge to dive deeper. If you feel lost in a sea of dance information, or if you want a clear, straight path to becoming a confident social dancer, this course is for you. We will help you unfold freely at both local and international tango events.",
+          "nl": "Deze cursus is bedoeld voor dansers die de drang voelen om dieper te gaan. Voel je je verloren in een zee aan dansinformatie, of wil je een helder, recht pad naar zelfverzekerd sociaal dansen? Dan is deze cursus voor jou. We helpen je je vrij te ontplooien op zowel lokale als internationale tango-evenementen."
+        }
+      }
+    ]
   }
 }

@@ -104,6 +104,7 @@ export default {
     promoEyebrow: 'New course',
     register: 'Register',
     aboutTitle: 'About the course',
+    moreInfo: 'More about the course & the teachers',
     scheduleTitle: 'Schedule',
     choiceLabel: 'Register for',
     nextLessonPrefix: 'Next lesson',

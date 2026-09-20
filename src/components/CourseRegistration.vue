@@ -134,7 +134,14 @@ async function submit() {
             </div>
           </div>
 
-          <p class="course-text">{{ pick(course.description) }}</p>
+          <p class="course-text">{{ pick(course.intro) }}</p>
+          <details v-if="course.details?.length" class="course-more">
+            <summary>{{ t('course.moreInfo') }}</summary>
+            <div v-for="block in course.details" :key="pick(block.heading)" class="course-more-block">
+              <h5>{{ pick(block.heading) }}</h5>
+              <p class="course-text">{{ pick(block.text) }}</p>
+            </div>
+          </details>
           <p class="course-text course-schedule">
             <strong>{{ t('course.scheduleTitle') }}:</strong> {{ pick(course.schedule) }}
           </p>
@@ -338,6 +345,31 @@ async function submit() {
 .course-schedule strong {
   color: var(--text);
   font-weight: 600;
+}
+
+.course-more {
+  margin: 0 0 1rem;
+}
+
+.course-more summary {
+  cursor: pointer;
+  color: var(--gold-bright);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.course-more summary:hover {
+  color: var(--text);
+}
+
+.course-more-block {
+  margin-top: 1rem;
+}
+
+.course-more-block h5 {
+  font-size: 1.1rem;
+  color: var(--gold-bright);
+  margin-bottom: 0.35rem;
 }
 
 .course-closed {
