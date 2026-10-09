@@ -26,21 +26,20 @@ const registrationOpen = computed(
   () => course.value && !course.value.closed && (nextLesson.value || fullCourseAvailable.value),
 )
 
-const form = reactive({ partner1: '', partner2: '', email: '', phone: '', choice: 'lesson', paid: false, honey: '' })
+const form = reactive({ partner1: '', partner2: '', email: '', phone: '', choice: 'lesson', honey: '' })
 const state = ref('form') // form | submitting | success | error
-const validationError = ref(null) // 'fields' | 'paid'
+const validationError = ref(false)
 
 watch(courseModal, (open) => {
   document.body.style.overflow = open ? 'hidden' : ''
   if (open) {
     state.value = 'form'
-    validationError.value = null
+    validationError.value = false
     form.partner1 = ''
     form.partner2 = ''
     form.email = ''
     form.phone = ''
     form.choice = nextLesson.value ? 'lesson' : 'course'
-    form.paid = false
     form.honey = ''
   }
 })
@@ -51,11 +50,6 @@ const chosenOption = computed(() => {
     ? course.value.fullCourse
     : nextLesson.value
 })
-
-// Payment details exist once the organiser has provided a link or QR
-const hasPayment = computed(
-  () => !!chosenOption.value && !!(chosenOption.value.paymentUrl || imgSrc(chosenOption.value.qrImage)),
-)
 
 const organiserEmail = () =>
   `${course.value.organiserEmailUser}@${course.value.organiserEmailDomain}`
@@ -80,16 +74,12 @@ const mailtoFallback = computed(() => {
 
 async function submit() {
   if (form.honey) return // spam bot filled the hidden field
-  if (hasPayment.value && !form.paid) {
-    validationError.value = 'paid'
-    return
-  }
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())
   if (!form.partner1.trim() || !form.partner2.trim() || !emailOk) {
-    validationError.value = 'fields'
+    validationError.value = true
     return
   }
-  validationError.value = null
+  validationError.value = false
   state.value = 'submitting'
   try {
     const response = await fetch(`https://formsubmit.co/ajax/${organiserEmail()}`, {
@@ -105,7 +95,6 @@ async function submit() {
         'E-mailadres': form.email.trim(),
         Telefoon: form.phone.trim() || '-',
         Keuze: `${pick(chosenOption.value.label)} — ${chosenOption.value.price} per paar`,
-        'Betaald (volgens inschrijver)': hasPayment.value ? (form.paid ? 'ja' : 'nee') : 'n.v.t. (nog geen betaallink)',
         Taal: lang.value,
       }),
     })
@@ -182,37 +171,6 @@ async function submit() {
               </label>
             </fieldset>
 
-            <!-- Step 1: pay first -->
-            <div v-if="chosenOption" class="course-pay">
-              <h5>{{ t('course.payFirstTitle') }}</h5>
-              <p class="course-pay-amount">{{ t('course.payAmount', { price: chosenOption.price }) }}</p>
-              <template v-if="hasPayment">
-                <img
-                  v-if="imgSrc(chosenOption.qrImage)"
-                  class="course-qr"
-                  :src="imgSrc(chosenOption.qrImage)"
-                  alt="Payment QR"
-                />
-                <a
-                  v-if="chosenOption.paymentUrl"
-                  :href="chosenOption.paymentUrl"
-                  target="_blank"
-                  rel="noopener"
-                  class="btn btn--gold"
-                >
-                  {{ t('course.payLink', { price: chosenOption.price }) }}
-                </a>
-                <p class="course-pay-note">{{ t('course.payNames') }}</p>
-                <label class="course-paid">
-                  <input v-model="form.paid" type="checkbox" />
-                  <span>{{ t('course.paidCheckbox', { price: chosenOption.price }) }}</span>
-                </label>
-              </template>
-              <p v-else class="course-pay-note">{{ t('course.payFollows') }}</p>
-            </div>
-
-            <!-- Step 2: your details -->
-            <p class="course-step-title">{{ t('course.detailsTitle') }}</p>
             <div class="course-fields">
               <label>
                 <span>{{ t('course.partner1') }} *</span>
@@ -237,8 +195,7 @@ async function submit() {
               </label>
             </div>
 
-            <p v-if="validationError === 'fields'" class="course-error-inline">{{ t('course.required') }}</p>
-            <p v-else-if="validationError === 'paid'" class="course-error-inline">{{ t('course.paidRequired') }}</p>
+            <p v-if="validationError" class="course-error-inline">{{ t('course.required') }}</p>
             <p class="course-privacy">{{ t('course.privacy') }}</p>
 
             <button type="submit" class="btn btn--gold" :disabled="state === 'submitting'">
@@ -246,7 +203,7 @@ async function submit() {
             </button>
           </form>
 
-          <!-- Success -->
+          <!-- Step 2: success + payment -->
           <div v-else-if="state === 'success'" class="course-result">
             <h4>{{ t('course.successTitle') }}</h4>
             <p>
@@ -257,8 +214,30 @@ async function submit() {
                 })
               }}
             </p>
-            <p v-if="hasPayment">{{ t('course.successPaid', { price: chosenOption.price }) }}</p>
-            <p v-else>{{ t('course.payFollows') }}</p>
+
+            <div class="course-pay">
+              <h5>{{ t('course.payTitle') }}</h5>
+              <p class="course-pay-amount">{{ t('course.payAmount', { price: chosenOption.price }) }}</p>
+              <template v-if="chosenOption.paymentUrl || imgSrc(chosenOption.qrImage)">
+                <img
+                  v-if="imgSrc(chosenOption.qrImage)"
+                  class="course-qr"
+                  :src="imgSrc(chosenOption.qrImage)"
+                  alt="Payment QR"
+                />
+                <a
+                  v-if="chosenOption.paymentUrl"
+                  :href="chosenOption.paymentUrl"
+                  target="_blank"
+                  rel="noopener"
+                  class="btn btn--gold"
+                >
+                  {{ t('course.payLink', { price: chosenOption.price }) }}
+                </a>
+                <p class="course-pay-note">{{ t('course.payNames') }}</p>
+              </template>
+              <p v-else class="course-pay-note">{{ t('course.payFollows') }}</p>
+            </div>
           </div>
 
           <!-- Error state with mailto fallback -->
@@ -591,36 +570,6 @@ async function submit() {
 .course-pay-note {
   margin: 1rem 0 0;
   font-size: 0.85rem;
-}
-
-.course-paid {
-  display: flex;
-  gap: 0.7rem;
-  align-items: flex-start;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--line);
-  color: var(--text);
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.course-paid input {
-  margin-top: 0.3rem;
-  accent-color: var(--c-magenta);
-}
-
-.course-step-title {
-  margin: 1.5rem 0 0.9rem;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-}
-
-.course-form .course-pay {
-  margin-top: 0;
 }
 
 .course-error-actions {
