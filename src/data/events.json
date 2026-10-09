@@ -180,8 +180,66 @@
   {
     "date": "2026-10-18",
     "title": "Alma del Sur · IV",
-    "programme": [],
-    "registration": "fundamentos"
+    "programme": [
+      {
+        "time": "18:30",
+        "item": {
+          "en": "Masterclass by **Rocío de la Torre & Dario Cieri** (Buenos Aires): The Expressive Side of the Closed Embrace (until 19:30)",
+          "nl": "Masterclass door **Rocío de la Torre & Dario Cieri** (Buenos Aires): The Expressive Side of the Closed Embrace (tot 19:30)"
+        },
+        "photos": [
+          {
+            "file": "dario-rocio-3.jpeg",
+            "alt": "Rocío de la Torre & Dario Cieri",
+            "pos": "50% 30%"
+          },
+          {
+            "file": "dario-rocio-2.jpeg",
+            "alt": "Rocío de la Torre & Dario Cieri",
+            "pos": "50% 20%"
+          }
+        ]
+      }
+    ],
+    "cardLink": {
+      "text": {
+        "en": "Facebook event ↗",
+        "nl": "Facebook-evenement ↗"
+      },
+      "url": "https://fb.me/e/aj1J8YnpX"
+    },
+    "notes": [
+      {
+        "text": {
+          "en": "Masterclass theme — The Expressive Side of the Closed Embrace: dancing on the closed side within a close embrace, organizing the body, the embrace and the trajectories for a more expressive and musical dance in limited space. Subtle changes of dynamics, direction, pauses, accents and weight, while keeping connection, comfort and fluid circulation within the ronda.",
+          "nl": "Thema van de masterclass — The Expressive Side of the Closed Embrace: dansen aan de gesloten kant binnen een close embrace, waarbij we lichaam, omhelzing en trajecten zo organiseren dat je expressiever en muzikaler danst in beperkte ruimte. Subtiele veranderingen in dynamiek, richting, pauzes, accenten en gewicht, met behoud van verbinding, comfort en een vloeiende circulatie in de ronda."
+        }
+      },
+      {
+        "text": {
+          "en": "About Rocío & Dario: professional Argentine tango dancers and teachers from Buenos Aires — elegance, refined aesthetics and deep musical sensitivity. First-prize winners at Tango 2 London and Sonrisas Milongueras TMV, and 2024–2026 semi-finalists of the Tango World Championship and the Buenos Aires Tango Championship.",
+          "nl": "Over Rocío & Dario: professionele Argentijnse tangodansers en docenten uit Buenos Aires — elegantie, verfijnde esthetiek en diepe muzikale gevoeligheid. Winnaars van de eerste prijs bij Tango 2 London en Sonrisas Milongueras TMV, en in 2024–2026 halvefinalisten van het WK Tango en het Buenos Aires Tango Championship."
+        },
+        "photos": [
+          {
+            "file": "dario-rocio-1.jpeg",
+            "alt": "Rocío de la Torre & Dario Cieri",
+            "pos": "50% 18%"
+          },
+          {
+            "file": "dario-rocio-4.jpeg",
+            "alt": "Rocío de la Torre & Dario Cieri",
+            "pos": "50% 22%"
+          }
+        ]
+      },
+      {
+        "text": {
+          "en": "Free beginners class, as always — details follow soon.",
+          "nl": "Gratis beginnersles, zoals altijd — details volgen binnenkort."
+        }
+      }
+    ]
   },
   {
     "date": "2026-11-15",
