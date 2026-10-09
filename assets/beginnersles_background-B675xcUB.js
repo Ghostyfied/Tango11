@@ -1,0 +1,1 @@
+var e=``+new URL(`beginnersles_background-Dg0oMVwf.jpeg`,import.meta.url).href;export{e as t};
