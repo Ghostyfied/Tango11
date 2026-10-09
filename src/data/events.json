@@ -182,6 +182,13 @@
     "title": "Alma del Sur · IV",
     "programme": [
       {
+        "time": "17:00",
+        "item": {
+          "en": "Free [beginners class](beginners/) (until 18:00)",
+          "nl": "Gratis [beginnersles](beginners/) (tot 18:00)"
+        }
+      },
+      {
         "time": "18:30",
         "item": {
           "en": "Masterclass by **Rocío de la Torre & Dario Cieri** (Buenos Aires): The Expressive Side of the Closed Embrace (until 19:30)",
@@ -232,12 +239,6 @@
             "pos": "50% 22%"
           }
         ]
-      },
-      {
-        "text": {
-          "en": "Free beginners class, as always — details follow soon.",
-          "nl": "Gratis beginnersles, zoals altijd — details volgen binnenkort."
-        }
       }
     ]
   },
