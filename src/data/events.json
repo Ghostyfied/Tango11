@@ -182,17 +182,17 @@
     "title": "Alma del Sur · IV",
     "programme": [
       {
-        "time": "17:00",
+        "time": "17:30",
         "item": {
-          "en": "Free [beginners class](beginners/) (until 18:00)",
-          "nl": "Gratis [beginnersles](beginners/) (tot 18:00)"
+          "en": "Free [beginners workshop](beginners/) (until 18:30)",
+          "nl": "Gratis [beginnersworkshop](beginners/) (tot 18:30)"
         }
       },
       {
         "time": "18:30",
         "item": {
-          "en": "Masterclass by **Rocío de la Torre & Dario Cieri** (Buenos Aires): The Expressive Side of the Closed Embrace (until 19:30)",
-          "nl": "Masterclass door **Rocío de la Torre & Dario Cieri** (Buenos Aires): The Expressive Side of the Closed Embrace (tot 19:30)"
+          "en": "Advanced masterclass by **Rocío de la Torre & Dario Cieri** (Buenos Aires): The Expressive Side of the Closed Embrace (until 19:30)",
+          "nl": "Masterclass voor gevorderden door **Rocío de la Torre & Dario Cieri** (Buenos Aires): The Expressive Side of the Closed Embrace (tot 19:30)"
         },
         "photos": [
           {
@@ -206,6 +206,20 @@
             "pos": "50% 20%"
           }
         ]
+      },
+      {
+        "time": "19:30",
+        "item": {
+          "en": "Start of the milonga",
+          "nl": "Start van de milonga"
+        }
+      },
+      {
+        "time": "21:30",
+        "item": {
+          "en": "Performance",
+          "nl": "Optreden"
+        }
       }
     ],
     "cardLink": {
