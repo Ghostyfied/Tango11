@@ -259,8 +259,37 @@
   {
     "date": "2026-11-15",
     "title": "Alma del Sur · V",
-    "programme": [],
-    "registration": "fundamentos"
+    "programme": [
+      {
+        "time": "18:00",
+        "item": {
+          "en": "Workshop milonga (advanced level) by **Alejandro Beron & Kelly Lettieri** (until 19:00)",
+          "nl": "Workshop milonga (gevorderden) door **Alejandro Beron & Kelly Lettieri** (tot 19:00)"
+        },
+        "photos": [
+          {
+            "file": "alejandro-kelly-3.jpeg",
+            "alt": "Alejandro Beron & Kelly Lettieri",
+            "pos": "50% 34%"
+          },
+          {
+            "file": "alejandro-kelly-1.jpeg",
+            "alt": "Alejandro Beron & Kelly Lettieri performing",
+            "pos": "52% 40%"
+          }
+        ]
+      },
+      {
+        "time": "21:30",
+        "item": {
+          "en": "Performance in the salon by **Alejandro Beron & Kelly Lettieri**",
+          "nl": "Optreden in de salon van **Alejandro Beron & Kelly Lettieri**"
+        },
+        "photo": "alejandro-kelly-2.jpeg",
+        "photoAlt": "Alejandro Beron & Kelly Lettieri",
+        "photoPos": "50% 28%"
+      }
+    ]
   },
   {
     "date": "2026-12-20",
