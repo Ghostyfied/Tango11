@@ -197,7 +197,13 @@ function fmt(text) {
               >
                 {{ t('agenda.programme') }}
               </button>
-              <a v-if="event.cardLink" :href="event.cardLink.url" class="card-photos">
+              <a
+                v-if="event.cardLink"
+                :href="event.cardLink.url"
+                :target="event.cardLink.url.startsWith('http') ? '_blank' : null"
+                :rel="event.cardLink.url.startsWith('http') ? 'noopener' : null"
+                class="card-photos"
+              >
                 {{ pick(event.cardLink.text) }}
               </a>
               <button
